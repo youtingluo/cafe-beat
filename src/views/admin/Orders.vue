@@ -68,6 +68,7 @@ export default {
       const api = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/admin/orders?page=${page}`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
+          console.log(res.data);
           this.isLoading = false;
           this.orders = res.data.orders;
           this.pagination = res.data.pagination;

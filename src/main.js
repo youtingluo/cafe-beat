@@ -6,6 +6,10 @@ import VueAxios from 'vue-axios';
 // 讀取套件
 import VueLoading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
+// sweetAlert
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+// 表單驗證
 import {
   Field, Form, ErrorMessage, defineRule, configure,
 } from 'vee-validate';
@@ -33,6 +37,7 @@ setLocale('zh_TW');
 const app = createApp(App);
 app.use(VueAxios, axios);
 app.use(router);
+app.use(VueSweetalert2);
 
 // 註冊 vee-validate 三個全域元件
 app.component('Form', Form);

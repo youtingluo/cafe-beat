@@ -48,11 +48,11 @@
                       <button
                   type="button"
                   class="btn btn-outline-primary"
-                  :class="{ disabled: loadingStatus.isLoading === item.id }"
+                  :class="{ disabled: icon.isLoading === item.id }"
                   @click.stop="addToCart(item.id)"
                 >
                   <span
-                    v-if="loadingStatus.isLoading === item.id"
+                    v-if="icon.isLoading === item.id"
                     class="spinner-border spinner-border-sm me-3"
                   ></span
                   ><span class="align-middle material-icons-outlined">
@@ -81,7 +81,7 @@ export default {
   },
   data() {
     return {
-      loadingStatus: {
+      icon: {
         isLoading: '',
       },
       isLoading: false,
@@ -93,17 +93,20 @@ export default {
   methods: {
     addToCart(id) {
       const cart = { product_id: id, qty: this.qty };
-      this.loadingStatus.isLoading = id;
+      this.icon.isLoading = id;
       this.$http
         .post(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/cart`, { data: cart })
         .then((res) => {
           console.log(res);
           if (res.data.success) {
             console.log(res.data);
-            this.loadingStatus.isLoading = '';
+            this.icon.isLoading = '';
+            emitter.emit('push-message', res.data);
             emitter.emit('update-cart');
           } else {
             console.log(res.data.message);
+            emitter.emit('push-message', res.data);
+            this.icon.isLoading = '';
           }
         })
         .catch((err) => {

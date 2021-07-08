@@ -14,7 +14,7 @@
       <div>
           <img
             :src="item.product.imageUrl"
-            title="item.product.title"
+            :title="item.product.title"
             alt="product Image"
           />
       </div>
@@ -27,6 +27,7 @@
           <button
             type="button"
             class="btn btn-sm btn-outline-danger ms-3"
+            :class="{ 'disabled' : icon.isLoading === item.id }"
             @click.prevent="removeCarts(item.id)"
           >
             <span class="material-icons-outlined"> remove </span>
@@ -77,7 +78,9 @@ export default {
             console.log(res.data.message);
             this.getCarts();
             this.icon.isLoading = '';
+            emitter.emit('push-message', res.data);
           } else {
+            emitter.emit('push-message', res.data);
             console.log(res.data.message);
           }
         })
@@ -92,6 +95,8 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.icon.isLoading = '';
+            emitter.emit('push-message', res.data);
+            emitter.emit('update-cart');
             this.getCarts();
           } else {
             console.log(res.data.message);

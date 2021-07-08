@@ -152,45 +152,21 @@
   </section>
 
   <!-- 我們的商品 -->
-  <section class="product py-5">
-    <h2 class="text-center mb-5">全新商品！</h2>
+  <section id="sectionContact" class="py-5 bg-secondary">
     <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="product mb-3">
-            <div class="row align-items-center">
-              <div class="col-md-6">
-                <div
-                  class="bg-lg"
-                  style="
-                    background-image: url(https://images.unsplash.com/photo-1583953623787-ada99d338235?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=675&q=80);
-                  "
-                ></div>
-              </div>
-              <div class="col-md-6 p-5">
-                <p class="d-none d-md-block">2021 NEW</p>
-                <h2>產品</h2>
-                <p>price: NT8600</p>
-                <p class="my-5 d-none d-md-block">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Atque, eligendi.Lorem ipsum dolor sit amet consectetur
-                  adipisicing elit. Atque, eligendi.
-                </p>
-                <router-link class="text-decoration-none" to="/products"
-                  ><button
-                    type="button"
-                    class="btn button rounded-0 d-none d-md-block w-50"
-                  >
-                    查看更多
-                  </button></router-link
-                >
-              </div>
-            </div>
-          </div>
-        </div>
+      <h2 class="text-center fw-bold">聯絡我們</h2>
+    <div class="position-relative">
+      <img src="../assets/mail.svg" alt="mail" class="img-fluid">
+      <div
+      class="contact position-absolute bg-white shadow-sm rounded-3 border border-5 border-dark">
+        <p>公司：cafe beat 股份有限公司</p>
+        <p>地址：新北市三重區正義南路 87 號 1F</p>
+        <p>電話：02-22511234</p>
+        <p>聯絡人：羅先生</p>
       </div>
     </div>
-  </section>
+    </div>
+    </section>
 </template>
 
 <script>

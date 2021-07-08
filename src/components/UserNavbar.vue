@@ -163,7 +163,6 @@ export default {
         .get(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/cart`)
         .then((res) => {
           if (res.data.success) {
-            console.log(res);
             this.carts = res.data.data;
           } else {
             console.log(res);

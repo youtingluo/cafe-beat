@@ -3,6 +3,16 @@
     @content;
   }
 }
+@mixin mobile {
+  @media (max-width: 426px) {
+    @content;
+  }
+}
+@mixin small-mobile {
+  @media (max-width: 375px) {
+    @content;
+  }
+}
 .font {
   font-family: "Viaoda Libre", cursive;
 }
@@ -161,5 +171,28 @@ section.product {
   .bg-cover {
     background-size: cover;
     background-position: center center;
+  }
+}
+#sectionContact{
+  .contact {
+    top: 35%;
+    right: 20%;
+    padding: 5rem;
+    font-size: 2rem;
+    @include pad {
+      top: 35%;
+      padding: 2rem;
+      right: 10%;
+    }
+    @include mobile {
+      padding: 1rem;
+      font-size: 1rem;
+    }
+    @include small-mobile {
+      top: 0;
+    }
+  }
+  img {
+    transform: scale(0.7) rotate(15deg);
   }
 }

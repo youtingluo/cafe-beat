@@ -23,6 +23,18 @@ const routes = [
         path: 'carts',
         component: () => import('../views/Cart.vue'),
       },
+      {
+        path: 'order',
+        component: () => import('../views/Order.vue'),
+      },
+      {
+        path: 'pay/:orderId',
+        component: () => import('../views/Pay.vue'),
+      },
+      {
+        path: 'complete/:orderId',
+        component: () => import('../views/Complete.vue'),
+      },
     ],
   },
   {

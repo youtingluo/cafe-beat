@@ -1,13 +1,23 @@
 <template>
-  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B"></Loading>
-<div class="banner d-flex align-items-center justify-content-center">
-    <h2 class="text-white fw-bold bg-primary
-    border-bottom border-3 d-inline-block py-3 px-5">您的購物車</h2>
+  <div class="banner d-flex align-items-center justify-content-center">
+    <h2
+      class="
+        text-white
+        fw-bold
+        bg-primary
+        border-bottom border-3
+        d-inline-block
+        py-3
+        px-5
+      "
+    >
+      您的購物車
+    </h2>
   </div>
   <section class="py-5">
     <div class="container">
       <!-- 購物流程 -->
-      <div class="d-flex justify-content-center mb-3">
+      <div class="d-flex justify-content-center mb-5">
         <div class="progresses">
           <div class="steps bg-primary rounded-circle">
             <span class="font-weight-bold">1</span>
@@ -17,17 +27,26 @@
             <span class="font-weight-bold">2</span>
           </div>
           <span class="line bg-primary"></span>
-          <div class="steps bg-primary"><span class="font-weight-bold">3</span></div>
+          <div class="steps bg-primary">
+            <span class="font-weight-bold">3</span>
+          </div>
         </div>
       </div>
       <!-- 購物流程 END -->
       <div class="row">
         <div class="col-lg-8">
-          <table class="table text-primary">
+          <table class="table text-primary position-relative">
+            <Loading
+              :active="isLoading"
+              :z-index="1060"
+              loader="bars"
+              color="#84543B"
+              :is-full-page="false"
+            ></Loading>
             <thead class="text-dark bg-secondary border-0">
               <tr>
-                <th width="">品項</th>
-                <th class="d-none d-lg-table-cell">圖片</th>
+                <th>品項</th>
+                <th class="d-none d-lg-table-cell">商品圖</th>
                 <th>單價</th>
                 <th class="d-none d-lg-table-cell">數量</th>
                 <th class="d-none d-lg-table-cell">金額</th>
@@ -35,14 +54,15 @@
               </tr>
             </thead>
             <tbody class="js-cartItem">
-              <tr
-                v-for="item in carts.carts"
-                :key="item.id"
-              >
+              <tr v-for="item in carts.carts" :key="item.id">
                 <td>
                   <p class="fw-bold">{{ item.product.title }}</p>
                   <div class="wrap">
-                    <img class="d-lg-none" :src="item.product.imageUrl" alt="product" />
+                    <img
+                      class="d-lg-none"
+                      :src="item.product.imageUrl"
+                      alt="product"
+                    />
                   </div>
                 </td>
                 <td class="d-none d-lg-table-cell">
@@ -52,38 +72,92 @@
                 </td>
                 <td>
                   <p>NT$ {{ item.product.price }}</p>
-                  <div class="input-group d-flex d-lg-none">
-                    <div class="btn btn-outline-primary">-</div>
-                    <input type="number" class="form-control text-center"
-                    aria-label="number" :value="item.qty">
-                    <div class="btn btn-outline-primary">+</div>
+                  <div class="input-group d-lg-none">
+                    <div class="btn btn-outline-primary"
+                    :class="{ 'disabled' : item.id === icon.isUpdate }"
+                    @click="updateCart(item, item.qty - 1)">
+                    <span
+                      v-if="icon.isUpdate === item.id"
+                      class="spinner-border spinner-border-sm"
+                    ></span>
+                    <span v-else>-</span>
+                    </div>
+                    <input
+                      type="number"
+                      class="form-control text-center"
+                      :class="{ 'disabled' : item.id === icon.isUpdate }"
+                      aria-label="number"
+                      v-model.number="item.qty"
+                      @change="updateCart(item, item.qty)"
+                    />
+                    <div class="btn btn-outline-primary"
+                    :class="{ 'disabled' : item.id === icon.isUpdate }"
+                    @click="updateCart(item, item.qty + 1)">
+                    <span
+                      v-if="icon.isUpdate === item.id"
+                      class="spinner-border spinner-border-sm"
+                    ></span>
+                    <span v-else>+</span>
+                    </div>
                   </div>
                 </td>
                 <td class="d-none d-lg-table-cell">
                   <div class="input-group">
-                    <div class="btn btn-outline-primary">-</div>
-                    <input type="number" class="form-control text-center"
-                    aria-label="number" :value="item.qty">
-                    <div class="btn btn-outline-primary">+</div>
+                    <div class="btn btn-outline-primary"
+                    :class="{ 'disabled' : item.id === icon.isUpdate }"
+                    @click="updateCart(item, item.qty - 1)">
+                    <span
+                      v-if="icon.isUpdate === item.id"
+                      class="spinner-border spinner-border-sm"
+                    ></span>
+                    <span v-else>-</span>
+                    </div>
+                    <input
+                      type="number"
+                      class="form-control text-center"
+                      :class="{ 'disabled' : item.id === icon.isUpdate }"
+                      aria-label="number"
+                      v-model.number="item.qty"
+                      @change="updateCart(item, item.qty)"
+                    />
+                    <div class="btn btn-outline-primary"
+                    :class="{ 'disabled' : item.id === icon.isUpdate }"
+                    @click="updateCart(item, item.qty + 1)">
+                    <span
+                      v-if="icon.isUpdate === item.id"
+                      class="spinner-border spinner-border-sm"
+                    ></span>
+                    <span v-else>+</span>
+                    </div>
                   </div>
                 </td>
                 <td class="d-none d-lg-table-cell">NT$ {{ item.total }}</td>
                 <td>
-                  <a @click.prevent="removeCarts(item.id)"
-                  class="btn btn-outline-danger material-icons-outlined text-decoration-none
-                  " :class="{ disabled: icon.isLoading === item.id }">
-                    <span v-if="icon.isLoading === item.id"
-                    class="spinner-border spinner-border-sm"></span>
+                  <a
+                    @click.prevent="removeCarts(item.id)"
+                    class="
+                      btn btn-outline-danger
+                      material-icons-outlined
+                      text-decoration-none
+                    "
+                    :class="{ disabled: icon.isLoading === item.id }"
+                  >
+                    <span
+                      v-if="icon.isRemove === item.id"
+                      class="spinner-border spinner-border-sm"
+                    ></span>
                     <span v-else class="align-base">delete_outline</span>
                   </a>
                 </td>
               </tr>
             </tbody>
           </table>
-          <div class="text-end fw-bold text-secondary fs-5">總價：{{ carts.final_total }}</div>
+          <div class="text-end fw-bold text-secondary fs-5">
+            總價：{{ carts.final_total }}
+          </div>
           <div class="d-flex justify-content-between my-3">
             <div class="btn btn-outline-primary">↼ 繼續購物</div>
-            <div class="btn btn-primary">下一步 ⇀</div>
+            <div class="btn btn-primary" @click="goNext">下一步 ⇀</div>
           </div>
         </div>
         <div class="col-lg-4">
@@ -105,8 +179,10 @@ export default {
       carts: {
         carts: [],
       },
+      quantity: 1,
       icon: {
-        isLoading: '',
+        isUpdate: '',
+        isRemove: '',
       },
       isLoading: false,
     };
@@ -119,7 +195,6 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.isLoading = false;
-            console.log(res);
             this.carts = res.data.data;
           } else {
             console.log(res);
@@ -131,7 +206,7 @@ export default {
     },
     updateCart(item, qty) {
       this.isLoading = true;
-      this.icon.isLoading = item.id;
+      this.icon.isUpdate = item.id;
       const cart = { product_id: item.product_id, qty };
       this.$http
         .put(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/cart/${item.id}`, { data: cart })
@@ -140,8 +215,11 @@ export default {
             this.isLoading = false;
             console.log(res.data.message);
             this.getCarts();
-            this.icon.isLoading = '';
+            this.icon.isUpdate = '';
+            emitter.emit('push-message', res.data);
+            emitter.emit('update-cart');
           } else {
+            emitter.emit('push-message', res.data);
             console.log(res.data.message);
           }
         })
@@ -150,15 +228,17 @@ export default {
         });
     },
     removeCarts(id) {
-      this.icon.isLoading = id;
+      this.icon.isRemove = id;
       this.$http
         .delete(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/cart/${id}`)
         .then((res) => {
           if (res.data.success) {
-            this.icon.isLoading = '';
+            this.icon.isRemove = '';
             this.getCarts();
+            emitter.emit('push-message', res.data);
             emitter.emit('update-cart');
           } else {
+            emitter.emit('push-message', res.data);
             console.log(res.data.message);
           }
         })
@@ -173,7 +253,9 @@ export default {
           if (res.data.success) {
             console.log(res.data.message);
             this.$router.push('/products');
+            emitter.emit('push-message', res.data);
           } else {
+            emitter.emit('push-message', res.data);
             console.log(res.data.message);
           }
         })
@@ -181,9 +263,14 @@ export default {
           console.log(err);
         });
     },
+    goNext() {
+      emitter.emit('update-cart');
+      this.$router.push('/order');
+    },
   },
   created() {
     this.getCarts();
+    console.log(this.$router, this.$route);
   },
 };
 </script>

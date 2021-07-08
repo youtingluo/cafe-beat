@@ -110,6 +110,7 @@ export default {
           if (res.data.success) {
             console.log(res.data);
             this.icon.isLoading = '';
+            emitter.emit('push-message', res.data);
             emitter.emit('update-cart');
           } else {
             console.log(res.data.message);
