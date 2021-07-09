@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: '/coffee-beat/',
+  publicPath: '/cafe-beat/',
 };
