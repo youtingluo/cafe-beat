@@ -19,7 +19,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
-        <Form v-slot="{ errors }" @submit="sendOrder">
+        <Form ref="orderForm" v-slot="{ errors }" @submit="sendOrder">
           <div class="mb-3">
             <label for="name" class="form-label">姓名 <span class="text-danger">*</span></label>
             <Field id="name" name="姓名" type="text" class="form-control"
@@ -59,9 +59,9 @@
             v-model="form.message"></textarea>
           </div>
           <div class="d-flex justify-content-between my-3">
-            <div class="btn btn-outline-primary">↼ 上一步</div>
+            <div class="btn btn-outline-primary" @click="$router.go(-1)">↼ 上一步</div>
             <button class="btn btn-primary not-allowed" type="submit"
-              @click="sendOrder">送出訂單</button>
+              :disabled="!isComplete">送出訂單</button>
           </div>
         </Form>
       </div>
@@ -107,7 +107,17 @@ export default {
         },
         message: '',
       },
+      validate: null,
     };
+  },
+  computed: {
+    isComplete() {
+      const allInput = [...document.querySelectorAll('form input')];
+      const validate = allInput.filter((item) => item.classList.contains('is-invalid'));
+      console.log(validate.length);
+      return this.form.user.name && this.form.user.email
+      && this.form.user.tel && this.form.user.address && validate.length === 0;
+    },
   },
   methods: {
     getCarts() {
@@ -119,7 +129,8 @@ export default {
             this.isLoading = false;
             this.carts = res.data.data;
           } else {
-            console.log(res);
+            this.isLoading = false;
+            emitter.emit('push-message', res.data);
           }
         })
         .catch((err) => {
@@ -134,10 +145,11 @@ export default {
             console.log(res.data);
             if (res.data.orderId) {
               emitter.emit('push-message', res.data);
+              emitter.emit('update-cart');
               this.$router.push(`/pay/${res.data.orderId}`);
             }
           } else {
-            console.log(res.data);
+            emitter.emit('push-message', res.data);
           }
         })
         .catch((err) => {

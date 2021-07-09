@@ -15,9 +15,10 @@ export default {
     showAlert(msg) {
       this.$swal({
         toast: true,
-        position: 'top-end',
+        position: 'top',
         icon: 'success',
         title: msg.message,
+        showCloseButton: true,
         showConfirmButton: false,
         timerProgressBar: true,
         timer: 3000,
@@ -26,7 +27,7 @@ export default {
     showFailAlert(msg) {
       this.$swal({
         toast: true,
-        position: 'top-end',
+        position: 'bottom-end',
         icon: 'error',
         title: msg.message,
         showConfirmButton: false,

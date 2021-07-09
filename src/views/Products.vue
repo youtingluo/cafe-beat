@@ -6,27 +6,31 @@
         <div class="list-group">
           <a
             href="#"
-            class="list-group-item list-group-item-action active"
+            @click.prevent="filterProduct = ''"
+            class="list-group-item list-group-item-action"
+            :class="{'active' : filterProduct === ''}"
             aria-current="true"
           >
-            咖啡豆
+            全部
           </a>
-          <a href="#" class="list-group-item list-group-item-action"
-            >A second link item</a
+          <a
+            v-for="item in categories" :key="item"
+            @click.prevent="filterProduct = item"
+            href="#"
+            class="list-group-item list-group-item-action"
+            :class="{'active' : filterProduct === item}"
+            aria-current="true"
           >
-          <a href="#" class="list-group-item list-group-item-action"
-            >A third link item</a
-          >
-          <a href="#" class="list-group-item list-group-item-action"
-            >A fourth link item</a
-          >
+            {{ item }}
+          </a>
         </div>
       </div>
-      <div class="col-lg-9">
-        <div class="row">
+      <div class="col-lg-9 position-relative">
+      <div :class="{'breath': filterAni}"></div>
+        <div class="row" :class="{'productLight': filterAni}">
           <div
             class="col-md-6 col-xl-4 mb-3"
-            v-for="item in products"
+            v-for="item in filterProducts"
             :key="item.id"
           >
               <div class="product h-100" @click="goToProduct(item)">
@@ -64,7 +68,7 @@
                 </div>
               </div>
           </div>
-          <Pagination :pages="pagination" @get-page="getProducts"></Pagination>
+          <!-- <Pagination :pages="pagination" @get-page="getProducts"></Pagination> -->
         </div>
       </div>
     </div>
@@ -72,12 +76,11 @@
 </template>
 
 <script>
-import Pagination from '@/components/Pagination.vue';
+// import Pagination from '@/components/Pagination.vue';
 import emitter from '../assets/javascript/emitter';
 
 export default {
   components: {
-    Pagination,
   },
   data() {
     return {
@@ -86,9 +89,26 @@ export default {
       },
       isLoading: false,
       products: [],
+      allProducts: [],
       pagination: {},
+      categories: [],
+      filterProduct: '',
+      filterAni: false,
       qty: 1,
     };
+  },
+  watch: {
+    filterProduct() {
+      this.filterAni = true;
+      setTimeout(() => {
+        this.filterAni = false;
+      }, 500);
+    },
+  },
+  computed: {
+    filterProducts() {
+      return this.allProducts.filter((item) => item.category.match(this.filterProduct));
+    },
   },
   methods: {
     addToCart(id) {
@@ -97,14 +117,11 @@ export default {
       this.$http
         .post(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/cart`, { data: cart })
         .then((res) => {
-          console.log(res);
           if (res.data.success) {
-            console.log(res.data);
             this.icon.isLoading = '';
             emitter.emit('push-message', res.data);
             emitter.emit('update-cart');
           } else {
-            console.log(res.data.message);
             emitter.emit('push-message', res.data);
             this.icon.isLoading = '';
           }
@@ -118,7 +135,6 @@ export default {
       this.$http
         .get(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/products?page=${page}`)
         .then((res) => {
-          console.log(res.data);
           if (res.data.success) {
             this.isLoading = false;
             this.products = res.data.products;
@@ -131,12 +147,32 @@ export default {
           console.log(err);
         });
     },
+    getAllproducts() {
+      this.$http
+        .get(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/products/all`)
+        .then((res) => {
+          if (res.data.success) {
+            this.allProducts = res.data.products;
+            this.getCategories();
+          } else {
+            console.log(res.data.message);
+          }
+        });
+    },
+    getCategories() {
+      const categories = new Set();
+      this.allProducts.forEach((item) => {
+        categories.add(item.category);
+      });
+      this.categories = [...categories];
+    },
     goToProduct(item) {
       this.$router.push(`/product/${item.id}`);
     },
   },
   mounted() {
     this.getProducts();
+    this.getAllproducts();
   },
 };
 </script>
@@ -162,10 +198,24 @@ export default {
     }
   }
 }
-
 .ellipsis {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.productLight {
+  animation: lighting .3s alternate;
+}
+@keyframes lighting {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+
+  }
+  100% {
+    opacity: 0.5;
+  }
 }
 </style>

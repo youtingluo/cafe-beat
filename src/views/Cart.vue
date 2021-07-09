@@ -16,23 +16,6 @@
   </div>
   <section class="py-5">
     <div class="container">
-      <!-- 購物流程 -->
-      <div class="d-flex justify-content-center mb-5">
-        <div class="progresses">
-          <div class="steps bg-primary rounded-circle">
-            <span class="font-weight-bold">1</span>
-          </div>
-          <span class="line bg-primary"></span>
-          <div class="steps bg-primary">
-            <span class="font-weight-bold">2</span>
-          </div>
-          <span class="line bg-primary"></span>
-          <div class="steps bg-primary">
-            <span class="font-weight-bold">3</span>
-          </div>
-        </div>
-      </div>
-      <!-- 購物流程 END -->
       <div class="row">
         <div class="col-lg-8">
           <table class="table text-primary position-relative">
@@ -156,15 +139,28 @@
             總價：{{ carts.final_total }}
           </div>
           <div class="d-flex justify-content-between my-3">
-            <div class="btn btn-outline-primary">↼ 繼續購物</div>
+            <div class="btn btn-outline-primary" @click="$router.push('/products')">↼ 繼續購物</div>
             <div class="btn btn-primary" @click="goNext">下一步 ⇀</div>
           </div>
         </div>
-        <div class="col-lg-4">
-          <div class="order p-3 border border-3 bg-secondary">
-            <h4>訂單列表</h4>
-          </div>
+              <div class="col-lg-4">
+        <div class="text-center p-3 text-white bg-secondary">
+          <h4 class="fw-bold">訂單列表</h4>
         </div>
+        <div class="row g-0 justify-content-between py-3 bg-primary text-white text-nowrap"
+        v-for="item in carts.carts" :key="item.id">
+          <div class="col">
+            <div class="ps-3">{{ item.product.title }}</div>
+          </div>
+          <div class="col"><div class="text-end">
+            x {{ item.qty }} {{ item.product.unit }}
+          </div></div>
+          <div class="col"><div class="text-end pe-3">NT$ {{ item.total }}</div></div>
+        </div>
+        <div class="text-end p-3 bg-secondary text-dark">
+          <h4 class="fw-bold">總價：NT$ {{ carts.final_total }}</h4>
+        </div>
+      </div>
       </div>
     </div>
   </section>
@@ -197,7 +193,8 @@ export default {
             this.isLoading = false;
             this.carts = res.data.data;
           } else {
-            console.log(res);
+            this.isLoading = false;
+            emitter.emit('push-message', res.data);
           }
         })
         .catch((err) => {
@@ -213,14 +210,13 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.isLoading = false;
-            console.log(res.data.message);
             this.getCarts();
             this.icon.isUpdate = '';
             emitter.emit('push-message', res.data);
             emitter.emit('update-cart');
           } else {
+            this.isLoading = false;
             emitter.emit('push-message', res.data);
-            console.log(res.data.message);
           }
         })
         .catch((err) => {
@@ -239,7 +235,6 @@ export default {
             emitter.emit('update-cart');
           } else {
             emitter.emit('push-message', res.data);
-            console.log(res.data.message);
           }
         })
         .catch((err) => {
@@ -251,12 +246,10 @@ export default {
         .delete(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/carts`)
         .then((res) => {
           if (res.data.success) {
-            console.log(res.data.message);
             this.$router.push('/products');
             emitter.emit('push-message', res.data);
           } else {
             emitter.emit('push-message', res.data);
-            console.log(res.data.message);
           }
         })
         .catch((err) => {
@@ -270,7 +263,6 @@ export default {
   },
   created() {
     this.getCarts();
-    console.log(this.$router, this.$route);
   },
 };
 </script>
