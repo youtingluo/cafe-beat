@@ -1,10 +1,25 @@
 <template>
-  <div class="bg vh-100 d-flex justify-content-center align-items-center">
+  <div class="banner d-flex align-items-center justify-content-center">
+    <h2
+      class="
+        text-white
+        fw-bold
+        bg-primary
+        border-bottom border-3
+        d-inline-block
+        py-3
+        px-5
+      "
+    >
+      完成購物
+    </h2>
+  </div>
+  <div class="bg py-3">
     <div class="container-fluid">
-    <div class="text p-5 d-flex justify-content-center flex-column align-items-center">
+    <div class="text p-5 text-center rounded-3">
     <img src="../assets/done_cup.svg" alt="">
-    <h1 class="text-white fw-bold my-5 text-center">恭喜您已購買完成</h1>
-    <div class="d-flex">
+    <p class="text-white my-5 text-center h1">恭喜您已購買完成</p>
+    <div class="d-flex justify-content-center">
       <router-link to="/" class="btn btn-primary me-3 btn-lg-lg">回首頁</router-link>
       <router-link to="/products" class="btn btn-primary">繼續購物</router-link>
     </div>
@@ -23,6 +38,6 @@
     background-position: center;
   }
   .text {
-    background: rgba(0,0,0,.5);
+    background: rgba(0, 0, 0, 0.3);
   }
 </style>

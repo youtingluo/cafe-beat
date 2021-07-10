@@ -14,7 +14,9 @@ import {
   Field, Form, ErrorMessage, defineRule, configure,
 } from 'vee-validate';
 // 匯入 vee-validate 相關規則
-import { required, email, min } from '@vee-validate/rules';
+import {
+  required, email, min, max, numeric,
+} from '@vee-validate/rules';
 // 匯入多國語系的功能
 import { localize, setLocale } from '@vee-validate/i18n';
 // 匯入繁體中文語系檔案
@@ -27,6 +29,8 @@ import router from './router';
 defineRule('required', required);
 defineRule('email', email);
 defineRule('min', min);
+defineRule('numeric', numeric);
+defineRule('max', max);
 // 設定 vee-validate 全域規則
 configure({
   generateMessage: localize({ zh_TW: zhTW }), // 載入繁體中文語系

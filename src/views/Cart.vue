@@ -14,12 +14,29 @@
       您的購物車
     </h2>
   </div>
-  <section class="py-5">
+  <section class="py-5 text-center" v-if="!carts.final_total">
+    <h3>您的購物車是空的</h3>
+    <div>
+      <img
+        class="mb-3"
+        src="../assets/sad_cup.svg"
+        title="購物車是空的"
+        alt="sad_cup"
+      />
+    </div>
+    <router-link to="/products" class="btn btn-outline-primary"
+      ><span class="align-middle material-icons-outlined">
+      shopping_cart
+      </span>去購物</router-link
+    >
+  </section>
+  <section class="py-5" v-else>
     <div class="container">
       <div class="row">
         <div class="col-lg-8">
-          <table class="table text-primary position-relative">
+          <table ref="tableContainer" class="table text-primary position-relative">
             <Loading
+              :container="$refs.tableContainer"
               :active="isLoading"
               :z-index="1060"
               loader="bars"
@@ -56,61 +73,69 @@
                 <td>
                   <p>NT$ {{ item.product.price }}</p>
                   <div class="input-group d-lg-none">
-                    <div class="btn btn-outline-primary"
-                    :class="{ 'disabled' : item.id === icon.isUpdate }"
-                    @click="updateCart(item, item.qty - 1)">
-                    <span
-                      v-if="icon.isUpdate === item.id"
-                      class="spinner-border spinner-border-sm"
-                    ></span>
-                    <span v-else>-</span>
+                    <div
+                      class="btn btn-outline-primary"
+                      :class="{ disabled: item.id === icon.isUpdate }"
+                      @click="updateCart(item, item.qty - 1)"
+                    >
+                      <span
+                        v-if="icon.isUpdate === item.id"
+                        class="spinner-border spinner-border-sm"
+                      ></span>
+                      <span v-else>-</span>
                     </div>
                     <input
                       type="number"
                       class="form-control text-center"
-                      :class="{ 'disabled' : item.id === icon.isUpdate }"
+                      :class="{ disabled: item.id === icon.isUpdate }"
                       aria-label="number"
                       v-model.number="item.qty"
                       @change="updateCart(item, item.qty)"
                     />
-                    <div class="btn btn-outline-primary"
-                    :class="{ 'disabled' : item.id === icon.isUpdate }"
-                    @click="updateCart(item, item.qty + 1)">
-                    <span
-                      v-if="icon.isUpdate === item.id"
-                      class="spinner-border spinner-border-sm"
-                    ></span>
-                    <span v-else>+</span>
+                    <div
+                      class="btn btn-outline-primary"
+                      :class="{ disabled: item.id === icon.isUpdate }"
+                      @click="updateCart(item, item.qty + 1)"
+                    >
+                      <span
+                        v-if="icon.isUpdate === item.id"
+                        class="spinner-border spinner-border-sm"
+                      ></span>
+                      <span v-else>+</span>
                     </div>
                   </div>
                 </td>
                 <td class="d-none d-lg-table-cell">
                   <div class="input-group">
-                    <div class="btn btn-outline-primary"
-                    :class="{ 'disabled' : item.id === icon.isUpdate }"
-                    @click="updateCart(item, item.qty - 1)">
-                    <span
-                      v-if="icon.isUpdate === item.id"
-                      class="spinner-border spinner-border-sm"
-                    ></span>
-                    <span v-else>-</span>
+                    <div
+                      class="btn btn-outline-primary"
+                      :class="{ disabled: item.id === icon.isUpdate }"
+                      @click="updateCart(item, item.qty - 1)"
+                    >
+                      <span
+                        v-if="icon.isUpdate === item.id"
+                        class="spinner-border spinner-border-sm"
+                      ></span>
+                      <span v-else>-</span>
                     </div>
                     <input
                       type="number"
                       class="form-control text-center"
-                      :class="{ 'disabled' : item.id === icon.isUpdate }"
+                      :class="{ disabled: item.id === icon.isUpdate }"
                       aria-label="number"
                       v-model.number="item.qty"
                       @change="updateCart(item, item.qty)"
                     />
-                    <div class="btn btn-outline-primary"
-                    :class="{ 'disabled' : item.id === icon.isUpdate }"
-                    @click="updateCart(item, item.qty + 1)">
-                    <span
-                      v-if="icon.isUpdate === item.id"
-                      class="spinner-border spinner-border-sm"
-                    ></span>
-                    <span v-else>+</span>
+                    <div
+                      class="btn btn-outline-primary"
+                      :class="{ disabled: item.id === icon.isUpdate }"
+                      @click="updateCart(item, item.qty + 1)"
+                    >
+                      <span
+                        v-if="icon.isUpdate === item.id"
+                        class="spinner-border spinner-border-sm"
+                      ></span>
+                      <span v-else>+</span>
                     </div>
                   </div>
                 </td>
@@ -139,28 +164,47 @@
             總價：{{ carts.final_total }}
           </div>
           <div class="d-flex justify-content-between my-3">
-            <div class="btn btn-outline-primary" @click="$router.push('/products')">↼ 繼續購物</div>
+            <div
+              class="btn btn-outline-primary"
+              @click="$router.push('/products')"
+            >
+              ↼ 繼續購物
+            </div>
             <div class="btn btn-primary" @click="goNext">下一步 ⇀</div>
           </div>
         </div>
-              <div class="col-lg-4">
-        <div class="text-center p-3 text-white bg-secondary">
-          <h4 class="fw-bold">訂單列表</h4>
-        </div>
-        <div class="row g-0 justify-content-between py-3 bg-primary text-white text-nowrap"
-        v-for="item in carts.carts" :key="item.id">
-          <div class="col">
-            <div class="ps-3">{{ item.product.title }}</div>
+        <div class="col-lg-4">
+          <div class="text-center p-3 text-white bg-secondary">
+            <h4 class="fw-bold">訂單列表</h4>
           </div>
-          <div class="col"><div class="text-end">
-            x {{ item.qty }} {{ item.product.unit }}
-          </div></div>
-          <div class="col"><div class="text-end pe-3">NT$ {{ item.total }}</div></div>
+          <div
+            class="
+              row
+              g-0
+              justify-content-between
+              py-3
+              bg-primary
+              text-white text-nowrap
+            "
+            v-for="item in carts.carts"
+            :key="item.id"
+          >
+            <div class="col">
+              <div class="ps-3">{{ item.product.title }}</div>
+            </div>
+            <div class="col">
+              <div class="text-end">
+                x {{ item.qty }} {{ item.product.unit }}
+              </div>
+            </div>
+            <div class="col">
+              <div class="text-end pe-3">NT$ {{ item.total }}</div>
+            </div>
+          </div>
+          <div class="text-end p-3 bg-secondary text-dark">
+            <h4 class="fw-bold">總價：NT$ {{ carts.final_total }}</h4>
+          </div>
         </div>
-        <div class="text-end p-3 bg-secondary text-dark">
-          <h4 class="fw-bold">總價：NT$ {{ carts.final_total }}</h4>
-        </div>
-      </div>
       </div>
     </div>
   </section>
@@ -174,6 +218,7 @@ export default {
     return {
       carts: {
         carts: [],
+        final_total: 0,
       },
       quantity: 1,
       icon: {
@@ -263,6 +308,9 @@ export default {
   },
   created() {
     this.getCarts();
+    emitter.on('update-cart', () => {
+      this.getCarts();
+    });
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light py-3">
+  <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light py-3 shadow-lg">
     <div class="container">
       <div class="me-auto">
         <router-link class="navbar-brand font" to="/">
@@ -90,22 +90,6 @@
         ></a
       >
           </li>
-          <!-- cart -->
-          <!-- <li><div class="btn-group">
-            <button class="btn btn-outline-primary dropdown-toggle"
-            type="button" id="dropdownMenuClickableInside"
-            data-bs-toggle="dropdown" data-bs-auto-close="outside"
-            aria-expanded="false" data-bs-display="static">
-              <span class="material-icons align-middle me-2">
-            shopping_cart
-            </span>購物車
-            </button>
-            <button class="btn btn-primary" type="button"
-            data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-            aria-controls="offcanvasRight"><span class="material-icons align-middle me-2">
-            shopping_cart
-            </span>購物車</button>
-          </div></li> -->
         </ul>
       </div>
     </div>
@@ -119,7 +103,10 @@
     aria-labelledby="offcanvasRightLabel"
   >
     <div class="offcanvas-header bg-primary align-items-baseline">
-      <h4 id="offcanvasRightLabel" class="text-white">您的購物車</h4>
+      <h4 id="offcanvasRightLabel" class="text-white mb-0 d-flex align-items-center">
+        <span class="px-2 material-icons-outlined fs-4">
+        shopping_bag
+        </span> 您的購物車</h4>
       <button
         type="button"
         class="btn-close text-reset"
@@ -137,7 +124,9 @@
     v-if="carts.carts.length !== 0"
     class="btn btn-dark position-absolute text-white rounded-0
     bottom-0 w-100 py-3 text-center text-decoration-none">
-      前往結帳
+      <span class="align-middle material-icons-outlined fs-5">
+        paid
+      </span> 前往結帳
     </router-link>
   </div>
 </template>

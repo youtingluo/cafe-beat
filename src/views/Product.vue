@@ -25,15 +25,19 @@
         <div class="d-flex w-100 mb-5 mb-lg-0">
           <select class="form-select me-3 w-50" aria-label="select qty" v-model.number="qty">
             <option selected disabled>選擇數量</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+            <option :value="i" v-for="i in 5" :key="i">{{ i }}</option>
           </select>
-          <div class="btn btn-outline-secondary"
+          <button type="button" class="btn btn-outline-secondary"
           :class="{ 'disabled' : product.id === icon.isLoading }"
-          @click="addToCart(product.id)">加入購物車</div>
+          @click="addToCart(product.id)">
+          <span
+              v-if="icon.isLoading === product.id"
+              class="spinner-border spinner-border-sm me-3"
+            ></span
+            ><span v-else class="align-middle material-icons-outlined">
+            add_shopping_cart
+            </span>加入購物車
+          </button>
         </div>
       </div>
     </div>

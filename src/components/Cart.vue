@@ -2,21 +2,28 @@
   <!-- 商品 -->
   <div v-if="carts.carts.length === 0" class="pt-5">
     <h2 class="text-danger fw-bold text-center">您目前還沒選購 :(</h2>
-    <router-link to="/products"
+    <router-link
+      to="/products"
       data-bs-dismiss="offcanvas"
-      class="btn btn-dark d-block mt-3">
+      class="btn btn-dark d-block mt-3"
+    >
       前往購物
       <span class="align-middle material-icons-outlined"> trending_flat </span>
     </router-link>
   </div>
-  <div v-else class="card-wrap py-2 p-md-3" v-for="item in carts.carts" :key="item.id">
+  <div
+    v-else
+    class="card-wrap py-2 p-md-3"
+    v-for="item in carts.carts"
+    :key="item.id"
+  >
     <div class="d-flex">
       <div>
-          <img
-            :src="item.product.imageUrl"
-            :title="item.product.title"
-            alt="product Image"
-          />
+        <img
+          :src="item.product.imageUrl"
+          :title="item.product.title"
+          alt="product Image"
+        />
       </div>
       <div class="d-flex flex-column justify-content-between ms-auto">
         <div>
@@ -27,10 +34,16 @@
           <button
             type="button"
             class="btn btn-sm btn-outline-danger ms-3"
-            :class="{ 'disabled' : icon.isLoading === item.id }"
+            :class="{ disabled: icon.isLoading === item.id }"
             @click.prevent="removeCarts(item.id)"
           >
-            <span class="material-icons-outlined"> remove </span>
+            <span
+              v-if="icon.isLoading === item.id"
+              class="spinner-border spinner-border-sm"
+            ></span>
+            <span v-else class="align-middle material-icons-outlined">
+              delete
+            </span>
           </button>
         </div>
       </div>
@@ -137,11 +150,10 @@ export default {
 <style lang="scss" scoped>
 .card-wrap {
   width: 100%;
-    img {
+  img {
     object-fit: cover;
     width: 100px;
     height: 100px;
   }
 }
-
 </style>

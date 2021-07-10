@@ -154,19 +154,29 @@
   <!-- 我們的商品 -->
   <section id="sectionContact" class="py-5 bg-secondary">
     <div class="container">
-      <h2 class="text-center fw-bold">聯絡我們</h2>
-    <div class="position-relative">
-      <img src="../assets/mail.svg" alt="mail" class="img-fluid">
-      <div
-      class="contact position-absolute bg-white shadow-sm rounded-3 border border-5 border-dark">
-        <p>公司：cafe beat 股份有限公司</p>
-        <p>地址：新北市三重區正義南路 87 號 1F</p>
-        <p>電話：02-22511234</p>
-        <p>聯絡人：羅先生</p>
+      <h2 class="text-center text-dark fw-bold">
+        <span class="material-icons-outlined"> email </span> 聯絡我們 ↴
+      </h2>
+      <div class="position-relative">
+        <img src="../assets/mail.svg" alt="mail" class="img-fluid" />
+        <div
+          class="
+            contact
+            position-absolute
+            bg-white
+            shadow-sm
+            rounded-3
+            border border-5 border-dark
+          "
+        >
+          <p class="mb-2">公司：cafe beat 股份有限公司</p>
+          <p class="mb-2">地址：新北市三重區正義南路 87 號 1F</p>
+          <p class="mb-2">電話：02-22511234</p>
+          <p class="mb-2">聯絡人：羅先生</p>
+        </div>
       </div>
     </div>
-    </div>
-    </section>
+  </section>
 </template>
 
 <script>

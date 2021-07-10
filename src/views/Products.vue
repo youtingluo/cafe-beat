@@ -59,7 +59,7 @@
                     v-if="icon.isLoading === item.id"
                     class="spinner-border spinner-border-sm me-3"
                   ></span
-                  ><span class="align-middle material-icons-outlined">
+                  ><span v-else class="align-middle material-icons-outlined">
                   add_shopping_cart
                   </span>加入購物車
                 </button>
