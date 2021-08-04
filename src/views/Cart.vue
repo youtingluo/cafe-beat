@@ -19,7 +19,7 @@
     <div>
       <img
         class="mb-3"
-        src="../assets/sad_cup.svg"
+        src="../assets/img/sad_cup.svg"
         title="購物車是空的"
         alt="sad_cup"
       />
@@ -33,7 +33,7 @@
   <section class="py-5" v-else>
     <div class="container">
       <div class="row">
-        <div class="col-lg-8">
+        <div class="col-md-7 col-lg-8">
           <table ref="tableContainer" class="table text-primary position-relative">
             <Loading
               :container="$refs.tableContainer"
@@ -48,7 +48,7 @@
                 <th>品項</th>
                 <th class="d-none d-lg-table-cell">商品圖</th>
                 <th>單價</th>
-                <th class="d-none d-lg-table-cell">數量</th>
+                <th width="200" class="d-none d-lg-table-cell">數量</th>
                 <th class="d-none d-lg-table-cell">金額</th>
                 <th>移除</th>
               </tr>
@@ -142,6 +142,7 @@
                 <td class="d-none d-lg-table-cell">NT$ {{ item.total }}</td>
                 <td>
                   <a
+                    href="#"
                     @click.prevent="removeCarts(item.id)"
                     class="
                       btn btn-outline-danger
@@ -160,7 +161,7 @@
               </tr>
             </tbody>
           </table>
-          <div class="text-end fw-bold text-secondary fs-5">
+          <div class="text-end fw-bold text-dark fs-5">
             總價：{{ carts.final_total }}
           </div>
           <div class="d-flex justify-content-between my-3">
@@ -173,8 +174,8 @@
             <div class="btn btn-primary" @click="goNext">下一步 ⇀</div>
           </div>
         </div>
-        <div class="col-lg-4">
-          <div class="text-center p-3 text-white bg-secondary">
+        <div class="col-md-5 col-lg-4">
+          <div class="text-center p-3 text-dark bg-light">
             <h4 class="fw-bold">訂單列表</h4>
           </div>
           <div
@@ -183,7 +184,7 @@
               g-0
               justify-content-between
               py-3
-              bg-primary
+              bg-dark
               text-white text-nowrap
             "
             v-for="item in carts.carts"
@@ -201,7 +202,7 @@
               <div class="text-end pe-3">NT$ {{ item.total }}</div>
             </div>
           </div>
-          <div class="text-end p-3 bg-secondary text-dark">
+          <div class="text-end p-3 bg-light text-dark">
             <h4 class="fw-bold">總價：NT$ {{ carts.final_total }}</h4>
           </div>
         </div>
@@ -211,9 +212,9 @@
 </template>
 
 <script>
-import emitter from '../assets/javascript/emitter';
 
 export default {
+  inject: ['emitter'],
   data() {
     return {
       carts: {
@@ -239,7 +240,7 @@ export default {
             this.carts = res.data.data;
           } else {
             this.isLoading = false;
-            emitter.emit('push-message', res.data);
+            this.emitter.emit('push-message', res.data);
           }
         })
         .catch((err) => {
@@ -257,11 +258,11 @@ export default {
             this.isLoading = false;
             this.getCarts();
             this.icon.isUpdate = '';
-            emitter.emit('push-message', res.data);
-            emitter.emit('update-cart');
+            this.emitter.emit('push-message', res.data);
+            this.emitter.emit('update-cart');
           } else {
             this.isLoading = false;
-            emitter.emit('push-message', res.data);
+            this.emitter.emit('push-message', res.data);
           }
         })
         .catch((err) => {
@@ -276,10 +277,10 @@ export default {
           if (res.data.success) {
             this.icon.isRemove = '';
             this.getCarts();
-            emitter.emit('push-message', res.data);
-            emitter.emit('update-cart');
+            this.emitter.emit('push-message', res.data);
+            this.emitter.emit('update-cart');
           } else {
-            emitter.emit('push-message', res.data);
+            this.emitter.emit('push-message', res.data);
           }
         })
         .catch((err) => {
@@ -292,9 +293,9 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.$router.push('/products');
-            emitter.emit('push-message', res.data);
+            this.emitter.emit('push-message', res.data);
           } else {
-            emitter.emit('push-message', res.data);
+            this.emitter.emit('push-message', res.data);
           }
         })
         .catch((err) => {
@@ -302,13 +303,13 @@ export default {
         });
     },
     goNext() {
-      emitter.emit('update-cart');
+      this.emitter.emit('update-cart');
       this.$router.push('/order');
     },
   },
   created() {
     this.getCarts();
-    emitter.on('update-cart', () => {
+    this.emitter.on('update-cart', () => {
       this.getCarts();
     });
   },

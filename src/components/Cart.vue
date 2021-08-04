@@ -52,9 +52,9 @@
 </template>
 
 <script>
-import emitter from '../assets/javascript/emitter';
 
 export default {
+  inject: ['emitter'],
   data() {
     return {
       carts: {
@@ -71,10 +71,9 @@ export default {
         .get(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/cart`)
         .then((res) => {
           if (res.data.success) {
-            console.log(res);
             this.carts = res.data.data;
           } else {
-            console.log(res);
+            this.emitter.emit('push-message', res.data);
           }
         })
         .catch((err) => {
@@ -88,13 +87,11 @@ export default {
         .put(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/cart/${item.id}`, { data: cart })
         .then((res) => {
           if (res.data.success) {
-            console.log(res.data.message);
             this.getCarts();
             this.icon.isLoading = '';
-            emitter.emit('push-message', res.data);
+            this.emitter.emit('push-message', res.data);
           } else {
-            emitter.emit('push-message', res.data);
-            console.log(res.data.message);
+            this.emitter.emit('push-message', res.data);
           }
         })
         .catch((err) => {
@@ -107,12 +104,12 @@ export default {
         .delete(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/cart/${id}`)
         .then((res) => {
           if (res.data.success) {
-            this.icon.isLoading = '';
-            emitter.emit('push-message', res.data);
-            emitter.emit('update-cart');
+            this.emitter.emit('push-message', res.data);
+            this.emitter.emit('update-cart');
             this.getCarts();
+            this.icon.isLoading = '';
           } else {
-            console.log(res.data.message);
+            this.emitter.emit('push-message', res.data);
           }
         })
         .catch((err) => {
@@ -124,10 +121,9 @@ export default {
         .delete(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/carts`)
         .then((res) => {
           if (res.data.success) {
-            console.log(res.data.message);
             this.$router.push('/products');
           } else {
-            console.log(res.data.message);
+            this.emitter.emit('push-message', res.data);
           }
         })
         .catch((err) => {
@@ -140,7 +136,7 @@ export default {
   },
   created() {
     this.getCarts();
-    emitter.on('update-cart', () => {
+    this.emitter.on('update-cart', () => {
       this.getCarts();
     });
   },

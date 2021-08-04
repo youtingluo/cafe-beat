@@ -1,7 +1,7 @@
 <template>
   <Navbar></Navbar>
   <div class="container">
-    <router-view></router-view>
+    <router-view v-if="checkUserLogin"></router-view>
   </div>
 </template>
 
@@ -10,6 +10,11 @@ import Navbar from '@/components/Navbar.vue';
 
 export default {
   components: { Navbar },
+  data() {
+    return {
+      checkUserLogin: false,
+    };
+  },
   methods: {
     checkLogin() {
       const token = document.cookie.replace(/(?:(?:^|.*;\s*)ytToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
@@ -18,6 +23,7 @@ export default {
         .then((res) => {
           if (res.data.success) {
             this.$router.push('/admin/products');
+            this.checkUserLogin = true;
           } else {
             this.$router.push('/login');
           }

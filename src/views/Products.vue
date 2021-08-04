@@ -1,5 +1,10 @@
 <template>
-  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B"></Loading>
+  <Loading
+    :active="isLoading"
+    :z-index="1060"
+    loader="bars"
+    color="#84543B"
+  ></Loading>
   <div class="container-fluid mt-5">
     <div class="row">
       <div class="col-lg-3 mb-3 mb-lg-0">
@@ -8,17 +13,18 @@
             href="#"
             @click.prevent="filterProduct = ''"
             class="list-group-item list-group-item-action"
-            :class="{'active' : filterProduct === ''}"
+            :class="{ active: filterProduct === '' }"
             aria-current="true"
           >
             全部
           </a>
           <a
-            v-for="item in categories" :key="item"
-            @click.prevent="filterProduct = item"
             href="#"
+            v-for="item in categories"
+            :key="item"
+            @click.prevent="filterProduct = item"
             class="list-group-item list-group-item-action"
-            :class="{'active' : filterProduct === item}"
+            :class="{ active: filterProduct === item }"
             aria-current="true"
           >
             {{ item }}
@@ -26,49 +32,48 @@
         </div>
       </div>
       <div class="col-lg-9 position-relative">
-      <div :class="{'breath': filterAni}"></div>
-        <div class="row" :class="{'productLight': filterAni}">
+        <div :class="{ breath: filterAni }"></div>
+        <div class="row" :class="{ productLight: filterAni }">
           <div
-            class="col-md-6 col-xl-4 mb-3"
+            class="col-md-6 col-xl-4 mb-4"
             v-for="item in filterProducts"
             :key="item.id"
           >
-              <div class="product h-100" @click="goToProduct(item)">
-                <div>
-                  <div class="products-img-wrap">
-                    <div
-                      class="products-img h-100"
-                      :style="`background-image: url(${item.imageUrl})`"
-                    ></div>
-                  </div>
-                  <div class="d-flex flex-column justify-content-between p-4">
-                    <div>
-                      <h2 class="fs-2">{{ item.title }}</h2>
-                      <p class="fs-4">$ {{ item.price }}</p>
-                      <p
-                        class="ellipsis text-primary"
-                        v-html="item.content"
-                      ></p>
-                      <button
-                  type="button"
-                  class="btn btn-outline-primary"
-                  :class="{ disabled: icon.isLoading === item.id }"
-                  @click.stop="addToCart(item.id)"
-                >
-                  <span
-                    v-if="icon.isLoading === item.id"
-                    class="spinner-border spinner-border-sm me-3"
-                  ></span
-                  ><span v-else class="align-middle material-icons-outlined">
-                  add_shopping_cart
-                  </span>加入購物車
-                </button>
-                    </div>
+            <div class="product h-100" @click="goToProduct(item)">
+              <div>
+                <div class="products-img-wrap">
+                  <div
+                    class="products-img h-100"
+                    :style="`background-image: url(${item.imageUrl})`"
+                  ></div>
+                </div>
+                <div class="d-flex flex-column justify-content-between p-4">
+                  <div>
+                    <h2 class="fs-2">{{ item.title }}</h2>
+                    <p class="fs-4">$ {{ item.price }}</p>
+                    <p class="ellipsis text-primary" v-html="item.content"></p>
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary"
+                      :class="{ disabled: icon.isLoading === item.id }"
+                      @click.stop="addToCart(item.id)"
+                    >
+                      <span
+                        v-if="icon.isLoading === item.id"
+                        class="spinner-border spinner-border-sm me-3"
+                      ></span
+                      ><span
+                        v-else
+                        class="align-middle material-icons-outlined"
+                      >
+                        add_shopping_cart </span
+                      >加入購物車
+                    </button>
                   </div>
                 </div>
               </div>
+            </div>
           </div>
-          <!-- <Pagination :pages="pagination" @get-page="getProducts"></Pagination> -->
         </div>
       </div>
     </div>
@@ -76,12 +81,9 @@
 </template>
 
 <script>
-// import Pagination from '@/components/Pagination.vue';
-import emitter from '../assets/javascript/emitter';
 
 export default {
-  components: {
-  },
+  inject: ['emitter'],
   data() {
     return {
       icon: {
@@ -118,11 +120,11 @@ export default {
         .post(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/cart`, { data: cart })
         .then((res) => {
           if (res.data.success) {
+            this.emitter.emit('push-message', res.data);
+            this.emitter.emit('update-cart');
             this.icon.isLoading = '';
-            emitter.emit('push-message', res.data);
-            emitter.emit('update-cart');
           } else {
-            emitter.emit('push-message', res.data);
+            this.emitter.emit('push-message', res.data);
             this.icon.isLoading = '';
           }
         })
@@ -136,11 +138,11 @@ export default {
         .get(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/products?page=${page}`)
         .then((res) => {
           if (res.data.success) {
-            this.isLoading = false;
             this.products = res.data.products;
             this.pagination = res.data.pagination;
+            this.isLoading = false;
           } else {
-            console.log(res.data.message);
+            this.emitter.emit('push-message', res.data);
           }
         })
         .catch((err) => {
@@ -155,7 +157,7 @@ export default {
             this.allProducts = res.data.products;
             this.getCategories();
           } else {
-            console.log(res.data.message);
+            this.emitter.emit('push-message', res.data);
           }
         });
     },
@@ -204,7 +206,7 @@ export default {
   text-overflow: ellipsis;
 }
 .productLight {
-  animation: lighting .3s alternate;
+  animation: lighting 0.3s alternate;
 }
 @keyframes lighting {
   0% {
@@ -212,7 +214,6 @@ export default {
   }
   50% {
     opacity: 0;
-
   }
   100% {
     opacity: 0.5;

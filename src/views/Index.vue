@@ -2,24 +2,24 @@
   <header class="position-relative">
     <img
       class="header-bottom position-absolute"
-      src="../assets/header_bottom.png"
+      src="../assets/img/header_bottom.png"
+      alt="header_bottom"
     />
     <div class="position-absolute text-white hero-text">
       YOU NEED BEAT NOT BEAN
     </div>
     <div class="container">
-      <img class="logo" src="../assets/logo.svg" alt="logo" />
+      <img class="logo" src="../assets/img/logo.svg" alt="logo" />
       <h1 class="h1 text-white my-5 font">Cafe Beat</h1>
-      <p class="h3">每天都需要一杯咖啡，為什麼？</p>
-      <p class="h3 mb-0">它，是你一天動力的來源</p>
+      <p class="h3">每天都需要一杯咖啡，為什麼？<br />它，是你一天動力的來源</p>
       <div class="explore text-secondary fw-bold">Explore</div>
     </div>
   </header>
-  <!-- section 關於區 -->
-  <section class="about bg-secondary py-5 fw-bold">
+  <!-- section 第二區 -->
+  <section class="life bg-secondary py-5 fw-bold">
     <img
       class="person position-absolute d-none d-md-block"
-      src="../assets/person.svg"
+      src="../assets/img/person.svg"
       alt="person"
     />
     <div class="container">
@@ -33,7 +33,7 @@
           <img
             class="img-fluid rounded rounded-5 border border-5"
             src="https://images.unsplash.com/photo-1504538292323-20e79775474d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
-            alt=""
+            alt="coffee bean"
           />
         </div>
         <div class="col-lg-8">
@@ -50,7 +50,7 @@
           <Button></Button>
         </div>
         <div class="col-sm-3">
-          <img class="img-fluid" src="../assets/cup.svg" alt="cup" />
+          <img class="img-fluid" src="../assets/img/cup.svg" alt="cup" />
         </div>
       </div>
     </div>
@@ -63,20 +63,20 @@
       <div class="row">
         <div class="col-md-4 mb-5 mb-md-0">
           <div class="h-100 d-flex flex-column justify-content-between">
-            <img class="img-fluid" src="../assets/breakfast.svg" alt="work" />
+            <img class="img-fluid" src="../assets/img/breakfast.svg" alt="breakfast" />
             <h3 class="h3 text-center mt-5">早餐時，你需要它</h3>
           </div>
         </div>
         <div class="col-md-4 mb-5 mb-md-0">
           <div class="h-100 d-flex flex-column justify-content-between">
-            <img class="img-fluid" src="../assets/work.svg" alt="work" />
+            <img class="img-fluid" src="../assets/img/work.svg" alt="work" />
             <h3 class="h3 text-center mt-5">工作時，你需要它</h3>
           </div>
         </div>
         <div class="col-md-4">
           <div class="h-100 d-flex flex-column justify-content-between">
             <div>
-              <img class="img-fluid" src="../assets/social.svg" alt="work" />
+              <img class="img-fluid" src="../assets/img/social.svg" alt="social" />
             </div>
             <div><h3 class="h3 text-center mt-5">社交時，你需要它</h3></div>
           </div>
@@ -105,7 +105,7 @@
           <img
             class="img-fluid rounded-pill mb-5 mb-md-0"
             src="https://images.unsplash.com/photo-1540965555-ef9a836372ed?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-            alt=""
+            alt="淺焙咖啡"
           />
         </div>
       </div>
@@ -114,7 +114,7 @@
           <img
             class="img-fluid rounded-pill mb-5 mb-md-0"
             src="https://images.unsplash.com/photo-1587049016823-69ef9d68bd44?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-            alt=""
+            alt="中焙咖啡"
           />
         </div>
         <div class="col-sm-6 order-first order-sm-last">
@@ -144,7 +144,7 @@
           <img
             class="img-fluid rounded-pill mb-5 mb-md-0"
             src="https://images.unsplash.com/photo-1611691934391-5a8805e0bd1a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
-            alt=""
+            alt="深焙咖啡"
           />
         </div>
       </div>
@@ -152,27 +152,20 @@
   </section>
 
   <!-- 我們的商品 -->
-  <section id="sectionContact" class="py-5 bg-secondary">
+  <section class="sectionContact bg-secondary">
     <div class="container">
-      <h2 class="text-center text-dark fw-bold">
-        <span class="material-icons-outlined"> email </span> 聯絡我們 ↴
-      </h2>
       <div class="position-relative">
-        <img src="../assets/mail.svg" alt="mail" class="img-fluid" />
-        <div
-          class="
-            contact
-            position-absolute
-            bg-white
-            shadow-sm
-            rounded-3
-            border border-5 border-dark
-          "
-        >
-          <p class="mb-2">公司：cafe beat 股份有限公司</p>
-          <p class="mb-2">地址：新北市三重區正義南路 87 號 1F</p>
-          <p class="mb-2">電話：02-22511234</p>
-          <p class="mb-2">聯絡人：羅先生</p>
+        <img src="../assets/img/mail.svg" alt="mail" class="img-fluid mail" />
+        <div class="contact position-absolute rounded-3">
+          <h2 class="text-center text-light fw-bold pb-3">
+            <span class="material-icons-outlined"> email </span> 聯絡我們 ↴
+          </h2>
+          <ul class="contact-text">
+            <li class="mb-2">公司：cafe beat 股份有限公司</li>
+            <li class="mb-2">地址：新北市三重區正義南路 87 號 1F</li>
+            <li class="mb-2">電話：<a href="telto:02-22551234">02-22551234</a></li>
+            <li class="mb-2">聯絡人：羅先生</li>
+          </ul>
         </div>
       </div>
     </div>

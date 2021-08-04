@@ -23,12 +23,17 @@
   <section class="py-5 text-center" v-if="!carts.final_total">
     <h3>您的購物車是空的</h3>
     <div>
-      <img class="mb-3" src="../assets/sad_cup.svg" title="購物車是空的" alt="sad_cup">
+      <img
+        class="mb-3"
+        src="../assets/img/sad_cup.svg"
+        title="購物車是空的"
+        alt="sad_cup"
+      />
     </div>
     <router-link to="/products" class="btn btn-outline-primary">
-      <span class="align-middle material-icons-outlined">
-      shopping_cart
-      </span>去購物</router-link>
+      <span class="align-middle material-icons-outlined"> shopping_cart </span
+      >去購物</router-link
+    >
   </section>
   <section class="py-5" v-else>
     <div class="container">
@@ -132,7 +137,8 @@
                 ↼ 上一步
               </div>
               <button
-                class="btn btn-primary not-allowed"
+                class="btn btn-primary"
+                :class="{ 'not-allowed': !isComplete }"
                 type="submit"
                 :disabled="!isComplete"
               >
@@ -183,9 +189,9 @@
 </template>
 
 <script>
-import emitter from '../assets/javascript/emitter';
 
 export default {
+  inject: ['emitter'],
   data() {
     return {
       isLoading: false,
@@ -212,7 +218,6 @@ export default {
     isComplete() {
       const allInput = [...document.querySelectorAll('form input')];
       const validate = allInput.filter((item) => item.classList.contains('is-invalid'));
-      console.log(validate.length);
       return this.form.user.name && this.form.user.email
         && this.form.user.tel && this.form.user.address && validate.length === 0;
     },
@@ -224,11 +229,11 @@ export default {
         .get(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/cart`)
         .then((res) => {
           if (res.data.success) {
-            this.isLoading = false;
             this.carts = res.data.data;
+            this.isLoading = false;
           } else {
             this.isLoading = false;
-            emitter.emit('push-message', res.data);
+            this.emitter.emit('push-message', res.data);
           }
         })
         .catch((err) => {
@@ -243,12 +248,12 @@ export default {
           if (res.data.success) {
             if (res.data.orderId) {
               this.icon.isLoading = false;
-              emitter.emit('push-message', res.data);
-              emitter.emit('update-cart');
+              this.emitter.emit('push-message', res.data);
+              this.emitter.emit('update-cart');
               this.$router.push(`/pay/${res.data.orderId}`);
             }
           } else {
-            emitter.emit('push-message', res.data);
+            this.emitter.emit('push-message', res.data);
           }
         })
         .catch((err) => {
@@ -258,7 +263,7 @@ export default {
   },
   created() {
     this.getCarts();
-    emitter.on('update-cart', () => {
+    this.emitter.on('update-cart', () => {
       this.getCarts();
     });
   },
@@ -266,7 +271,8 @@ export default {
 </script>
 
 <style lang="scss">
-.not-allowed {
+.btn:disabled {
+  pointer-events: all;
   cursor: not-allowed;
 }
 </style>

@@ -38,9 +38,7 @@
               <div class="mb-3">
                 <label for="customFile" class="form-label"
                   >或 上傳圖片
-                  <i
-                    class="fas fa-spinner fa-spin"
-                  ></i>
+                  <i class="fas fa-spinner fa-spin"></i>
                 </label>
                 <input
                   type="file"
@@ -65,7 +63,7 @@
                     placeholder="請輸入連結"
                   />
                   <div>
-                    <img class="img-fluid" :src="image"/>
+                    <img class="img-fluid" :src="image" />
                   </div>
                   <button
                     type="button"
@@ -221,6 +219,7 @@ export default {
       tempProduct: {},
     };
   },
+  emits: ['update-product'],
   props: ['isNew', 'product'],
   watch: {
     product() {
@@ -246,13 +245,11 @@ export default {
       formData.append('file-to-upload', file);
       const api = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/admin/upload`;
       this.$http.post(api, formData).then((res) => {
-        console.log(res.data);
         if (res.data.success) {
           this.tempProduct.imageUrl = res.data.imageUrl;
           this.$refs.fileInput.value = '';
         } else {
           this.$refs.fileInput.value = '';
-          console.log('上傳失敗');
         }
       });
     },

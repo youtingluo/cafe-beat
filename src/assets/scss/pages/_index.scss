@@ -14,7 +14,7 @@
   }
 }
 .font {
-  font-family: "Viaoda Libre", cursive;
+  font-family: 'Viaoda Libre', cursive;
 }
 .poly {
   height: 250px;
@@ -53,7 +53,7 @@ header {
     }
   }
   overflow: hidden;
-  height: calc(100vh - 72px );
+  height: calc(100vh - 72px);
   background-color: #402219;
   color: #ececec;
   text-align: center;
@@ -78,7 +78,7 @@ header {
     &::after {
       display: block;
       color: #e6af21;
-      content: "↯";
+      content: '↯';
       transform: scale(1.5);
     }
   }
@@ -94,7 +94,7 @@ header {
     }
   }
 }
-section.about {
+section.life {
   position: relative;
   .person {
     top: -28%;
@@ -152,7 +152,7 @@ section.product {
     }
     &::before {
       transition: 0.3s ease-in-out;
-      content: "";
+      content: '';
       position: absolute;
       left: -1px;
       top: 0;
@@ -162,7 +162,7 @@ section.product {
       z-index: -1;
     }
     &:hover::before {
-      content: "";
+      content: '';
       left: 0;
       top: 0;
       width: 100%;
@@ -173,26 +173,39 @@ section.product {
     background-position: center center;
   }
 }
-#sectionContact{
+.sectionContact {
+  img {
+    position: relative;
+    z-index: 5;
+  }
   .contact {
-    top: 35%;
+    background: #000;
+    box-shadow: 1.5rem 1.5rem 0 rgba($color: #fff, $alpha: 0.7);
+    z-index: 15;
+    mix-blend-mode: darken;
+    color: $primary;
+    top: 25%;
     right: 20%;
     padding: 5rem;
     font-size: 2rem;
     @include pad {
-      top: 35%;
+      top: 10%;
       padding: 2rem;
-      right: 10%;
+      right: 3%;
     }
     @include mobile {
       padding: 1rem;
       font-size: 1rem;
     }
     @include small-mobile {
-      top: 0;
+      top: 3%;
+      font-size: 0.7rem;
     }
   }
-  img {
-    transform: scale(0.7) rotate(15deg);
+  .mail {
+    transform: scale(0.6) rotate(15deg);
+    @include pad {
+      transform: scale(0.7) rotate(15deg);
+    }
   }
 }

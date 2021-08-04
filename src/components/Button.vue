@@ -1,25 +1,25 @@
 <template>
   <router-link to="/products">
-      <button class="btn"><span class="btn-text">馬上去買</span></button>
-      <div class="arrowAnim d-inline-block">
-        <div class="arrowSliding">
-          <div class="arrow"></div>
-        </div>
-        <div class="arrowSliding delay1">
-          <div class="arrow"></div>
-        </div>
-        <div class="arrowSliding delay2">
-          <div class="arrow"></div>
-        </div>
-        <div class="arrowSliding delay3">
-          <div class="arrow"></div>
-        </div>
+    <button class="btn"><span class="btn-text">馬上去買</span></button>
+    <div class="arrowAnim d-inline-block">
+      <div class="arrowSliding">
+        <div class="arrow"></div>
       </div>
+      <div class="arrowSliding delay1">
+        <div class="arrow"></div>
+      </div>
+      <div class="arrowSliding delay2">
+        <div class="arrow"></div>
+      </div>
+      <div class="arrowSliding delay3">
+        <div class="arrow"></div>
+      </div>
+    </div>
   </router-link>
 </template>
 
 <style lang="scss" scoped>
-$primary: #84543B;
+$primary: #84543b;
 $secondary: #e6af21;
 .btn {
   margin: 20px auto;
@@ -41,7 +41,7 @@ $secondary: #e6af21;
     left: 0;
   }
   &::after {
-    content: '←';
+    content: "←";
     position: absolute;
     right: -40px;
     animation: btnArrow 1.5s infinite;
@@ -69,5 +69,4 @@ $secondary: #e6af21;
     }
   }
 }
-
 </style>

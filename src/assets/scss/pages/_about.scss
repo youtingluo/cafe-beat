@@ -1,0 +1,89 @@
+section.about {
+  background: linear-gradient(
+      135deg,
+      rgba(132, 84, 59, 0.9) 0%,
+      rgba(235, 138, 118, 0.8) 100%
+    ),
+    url('https://images.unsplash.com/photo-1493606278519-11aa9f86e40a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80')
+      center no-repeat;
+  background-size: cover;
+}
+section.about,
+section.service,
+section.subscribe,
+section.pic {
+  h2 {
+    z-index: 1;
+    padding: 5px;
+    &::after {
+      content: '';
+      position: absolute;
+      left: 5%;
+      width: 80%;
+      height: 100%;
+      background: #000;
+      z-index: -1;
+      transform: rotate(-7deg);
+    }
+  }
+}
+@mixin pic-frame {
+  filter: brightness(0.5);
+  transition-duration: 0.5s;
+  padding: 170px 0;
+  background-size: 100%;
+}
+section.pic {
+  color: white;
+  .pic1 {
+    @include pic-frame;
+    background: url(https://images.unsplash.com/photo-1519937010618-f8c8b7e135b7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80)
+      center center no-repeat;
+    background-size: 100%;
+    &:hover {
+      background-size: 120%;
+    }
+  }
+  .pic2 {
+    @include pic-frame;
+    background: url(https://images.unsplash.com/photo-1609475349547-644d546313f6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80)
+      center no-repeat;
+    background-size: 100%;
+    &:hover {
+      background-size: 120%;
+    }
+  }
+  .pic3 {
+    @include pic-frame;
+    background: url(https://images.unsplash.com/photo-1518057111178-44a106bad636?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80)
+      center no-repeat;
+    background-size: 100%;
+    &:hover {
+      background-size: 120%;
+    }
+  }
+  .pic4 {
+    @include pic-frame;
+    background: url(https://images.unsplash.com/photo-1509785307050-d4066910ec1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=628&q=80)
+      center no-repeat;
+    background-size: 100%;
+    &:hover {
+      background-size: 120%;
+    }
+  }
+}
+section.pic .col-lg-6 {
+  position: relative;
+  padding: 0;
+}
+section.pic .text {
+  line-height: 1.8;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -40%);
+  pointer-events: none;
+  h3 {
+    color: $secondary;
+  }
+}

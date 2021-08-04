@@ -6,9 +6,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Viaoda+Libre&display=swap");
 // ---- component ----
 // UserNavbar
-@import '../assets/helpers/component/userNavbar';
+@import './helpers/component/userNavbar';
 
 // ---- pages ----
 // index
-@import '../assets/helpers/pages/index';
-@import '../assets/helpers/pages/cart';
+@import './pages/index';
+@import './pages/cart';
+@import './pages/about';

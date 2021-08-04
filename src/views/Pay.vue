@@ -52,10 +52,15 @@
             </li>
           </ul>
         </div>
-        <img src="../assets/cup.svg" alt="cup image" />
+        <img src="../assets/img/cup.svg" alt="cup image" />
       </div>
       <div class="text-center mb-3">
-        <div class="btn btn-primary text-center btn-lg" @click="payment(order.id)">確認付款</div>
+        <div
+          class="btn btn-primary text-center btn-lg"
+          @click="payment(order.id)"
+        >
+          確認付款
+        </div>
       </div>
     </div>
     <div class="text-dark bg-primary text-white">
@@ -97,6 +102,7 @@
 <script>
 
 export default {
+  inject: ['emitter'],
   data() {
     return {
       order: {},
@@ -111,11 +117,10 @@ export default {
         .get(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/order/${id}`)
         .then((res) => {
           if (res.data.success) {
-            this.isLoading = false;
             this.order = res.data.order;
-            console.log(res.data);
+            this.isLoading = false;
           } else {
-            console.log(res);
+            this.emitter.emit('push-message', res.data);
           }
         })
         .catch((err) => {
@@ -129,7 +134,7 @@ export default {
           if (res.data.success) {
             this.$router.push(`/complete/${id}`);
           } else {
-            console.log(res);
+            this.emitter.emit('push-message', res.data);
           }
         })
         .catch((err) => {

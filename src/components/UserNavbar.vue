@@ -1,25 +1,28 @@
 <template>
-  <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light py-3 shadow-lg">
+  <nav
+    class="
+      navbar navbar-expand-lg
+      sticky-top
+      navbar-light
+      bg-light
+      py-3
+      shadow-lg
+    "
+  >
     <div class="container">
       <div class="me-auto">
         <router-link class="navbar-brand font" to="/">
-          <img class="logo" src="../assets/logo.svg" alt="logo" />
+          <img class="logo" src="../assets/img/logo.svg" alt="logo" />
           <span class="fw-bold ms-2">Cafe Beat</span></router-link
         >
       </div>
       <a
-        class="
-          cart
-          me-2
-          text-decoration-none
-          d-line-block d-lg-none
-        "
+        class="cart me-2 text-decoration-none d-line-block d-lg-none"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasRight"
         aria-controls="offcanvasRight"
       >
-        <span class="material-icons align-middle fs-2">
-          shopping_cart </span
+        <span class="material-icons align-middle fs-2"> shopping_cart </span
         ><span
           class="
             fs-7
@@ -47,7 +50,7 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="list d-lg-flex align-items-center my-3 my-lg-0">
-          <li class="mb-3 mb-lg-0">
+          <li class="mb-3 me-lg-3 mb-lg-0">
             <router-link
               to="/products"
               class="
@@ -61,34 +64,43 @@
               >產品列表</router-link
             >
           </li>
+          <li class="mb-3 mb-lg-0">
+            <router-link
+              to="/about"
+              class="
+                btn btn-outline-primary
+                text-decoration-none
+                rounded-pill
+                d-block d-lg-inline-block
+              "
+            >
+              <span class="material-icons align-middle me-2"> face </span
+              >關於我們</router-link
+            >
+          </li>
           <li>
             <a
-        class="
-          cart
-          me-2
-          text-decoration-none
-          d-none d-lg-block
-        "
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasRight"
-        aria-controls="offcanvasRight"
-      >
-        <span class="material-icons align-middle me-2 fs-2">
-          shopping_cart </span
-        ><span
-          class="
-            fs-6
-            badge
-            text-white
-            bg-primary
-            rounded-circle
-            border border-primary
-            shadow
-          "
-        >
-          {{ carts.carts.length }}</span
-        ></a
-      >
+              class="cart me-2 text-decoration-none d-none d-lg-block"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasRight"
+              aria-controls="offcanvasRight"
+            >
+              <span class="material-icons align-middle me-2 fs-2">
+                shopping_cart </span
+              ><span
+                class="
+                  fs-6
+                  badge
+                  text-white
+                  bg-primary
+                  rounded-circle
+                  border border-primary
+                  shadow
+                "
+              >
+                {{ carts.carts.length }}</span
+              ></a
+            >
           </li>
         </ul>
       </div>
@@ -103,10 +115,13 @@
     aria-labelledby="offcanvasRightLabel"
   >
     <div class="offcanvas-header bg-primary align-items-baseline">
-      <h4 id="offcanvasRightLabel" class="text-white mb-0 d-flex align-items-center">
-        <span class="px-2 material-icons-outlined fs-4">
-        shopping_bag
-        </span> 您的購物車</h4>
+      <h4
+        id="offcanvasRightLabel"
+        class="text-white mb-0 d-flex align-items-center"
+      >
+        <span class="px-2 material-icons-outlined fs-4"> shopping_bag </span>
+        您的購物車
+      </h4>
       <button
         type="button"
         class="btn-close text-reset"
@@ -119,14 +134,22 @@
     </div>
 
     <router-link
-    to="/carts"
-    data-bs-dismiss="offcanvas"
-    v-if="carts.carts.length !== 0"
-    class="btn btn-dark position-absolute text-white rounded-0
-    bottom-0 w-100 py-3 text-center text-decoration-none">
-      <span class="align-middle material-icons-outlined fs-5">
-        paid
-      </span> 前往結帳
+      to="/carts"
+      data-bs-dismiss="offcanvas"
+      v-if="carts.carts.length !== 0"
+      class="
+        btn btn-dark
+        position-absolute
+        text-white
+        rounded-0
+        bottom-0
+        w-100
+        py-3
+        text-center text-decoration-none
+      "
+    >
+      <span class="align-middle material-icons-outlined fs-5"> paid </span>
+      前往結帳
     </router-link>
   </div>
 </template>
