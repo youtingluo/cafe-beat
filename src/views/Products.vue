@@ -4,7 +4,7 @@
     :z-index="1060"
     loader="bars"
     color="#84543B"
-  ></Loading>
+  />
   <div class="container-fluid mt-5">
     <div class="row">
       <div class="col-lg-3 mb-3 mb-lg-0">

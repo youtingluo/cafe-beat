@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B"></Loading>
+  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B"/>
   <div class="container">
     <table class="table mt-4">
       <thead>

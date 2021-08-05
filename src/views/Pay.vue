@@ -4,7 +4,7 @@
     :z-index="1060"
     loader="bars"
     color="#84543B"
-  ></Loading>
+  />
   <div class="banner d-flex align-items-center justify-content-center">
     <h2
       class="

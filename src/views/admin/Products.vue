@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B"></Loading>
+  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B"/>
   <div class="container">
     <div class="text-end mt-3">
       <button type="button" class="btn btn-primary" @click="openModal(true)">建立新產品</button>

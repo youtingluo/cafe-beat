@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B"></Loading>
+  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B"/>
   <div>
     <div class="text-end mt-4">
       <button class="btn btn-primary" type="button" @click="openModal(true)">
