@@ -17,7 +17,7 @@
         <div class="col-lg-6">
           <img
             class="img-fluid rounded rounded-3"
-            src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=656&q=80"
+            src="https://storage.googleapis.com/vue-course-api.appspot.com/youting/1628570359544.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=ZH0GbvZRSvTFe2%2FUGbdyO5tsOtGrI28fhJjiFyEERiHUbZHxbDoxelXQvbsSM42Qb52lPvBZhoXSReH48F8iVwdeVC9%2BRNLOa9s9aUpkgi9YLGTJqeLy%2FA2Sk6Mvhu0ibP%2FwB870KdVaS5O37oDOI%2B3eaKnCNdjp82ZK8Grsha1Vk9JnnrjV9Q4sqw8b6wuN%2BoYahtT2ts6i8a3PiI%2BIIDRrID9XifKnuXFqBfJNaq8W8QXG%2BLDChRCZdB2r1rghuoMkCT3SjAtCQR4jWnELHOTzwIG9wftz2qnD5bOUZfRIhPLvgu%2BLhce7igtKdjto2RJJH9oYDQXh4niznFkn%2Fw%3D%3D"
             alt="coffee"
           />
         </div>

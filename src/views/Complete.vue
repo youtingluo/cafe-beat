@@ -14,7 +14,7 @@
       完成購物
     </h2>
   </div>
-  <div class="bg py-3">
+  <div class="full-page-background py-3">
     <div class="container-fluid">
       <div class="text p-5 text-center rounded-3">
         <img src="../assets/img/done_cup.svg" alt="done_cup.svg" />
@@ -35,8 +35,8 @@
 h1 {
   font-size: 10vmin;
 }
-.bg {
-  background-image: url(https://images.unsplash.com/photo-1541870730196-cd1efcbf5649?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1952&q=80);
+.full-page-background {
+  background-image: url(https://storage.googleapis.com/vue-course-api.appspot.com/youting/1628572775405.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=H%2BIDB1tTMSbEhN4OCPONjGJJNl9%2BxpfrVP%2F0ygJNi1ssZE7PtQqO2ANsTPGbOC5LdXFlJ%2FoDrqhFw0slTmAjLw7CiHfrfbd3d%2FwSjAGhnyJyU4heD%2BngDOt3lU7%2FeM2YWJIkc7umKxi2%2FXiXNDrhJKGwHW1P4m5qfJuEtyJeVbDGoWnmHWm%2F2%2BXZ2JBBPALS7okkg08txMr6rfJL2L1gDV3NfOHEgftMSM7cd5nqVQbEbRf%2Bp5xLF%2FdYkDHftAEEqLi4T9bwXbEzFwWLTlDgechE8f%2FkxsF%2B9IOhx0qx6UyLuQRFwMImoef6NeW2FszN0Dcfz5%2BrseTFIWGkszWhaA%3D%3D);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

@@ -13,8 +13,8 @@
           placeholder="請輸入 Email"
           rules="email|required"
           v-model="user.username"
-        ></Field>
-        <error-message name="帳號" class="invalid-feedback"></error-message>
+        />
+        <ErrorMessage name="帳號" class="invalid-feedback"/>
       </div>
 
       <div class="mb-3">
@@ -28,8 +28,8 @@
           placeholder="請輸入密碼"
           rules="required"
           v-model="user.password"
-        ></Field>
-        <error-message name="密碼" class="invalid-feedback"></error-message>
+        />
+        <ErrorMessage name="密碼" class="invalid-feedback"/>
       </div>
       <button class="btn btn-primary" type="submit" @click="signIn">
         登入

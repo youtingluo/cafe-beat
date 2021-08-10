@@ -27,17 +27,11 @@ section.pic {
     }
   }
 }
-@mixin pic-frame {
-  filter: brightness(0.5);
-  transition-duration: 0.5s;
-  padding: 170px 0;
-  background-size: 100%;
-}
 section.pic {
   color: white;
   .pic1 {
     @include pic-frame;
-    background: url(https://images.unsplash.com/photo-1519937010618-f8c8b7e135b7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80)
+    background: url(https://storage.googleapis.com/vue-course-api.appspot.com/youting/1628575951919.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=Ro74L6wat4y%2BQI%2FCSfKdoJE9GGypitFaH1VVcBNqmFUr3Um87ORA2Fy1KJM1C7MvCnWF2XwAnVdYKMLfxMJN2AN6Tbr8MkJiuyvFrcILBaGxb1kM0hn%2BFUm9VVLkXH4gctmratNFym1wU%2FTWGPhJ5nqZuiFD7clhzripmiOrZvdYpnT1QVffk3%2BzXoZ%2FGkDLBqyl3u5YsM8GVXCD2ymjpSONzPMm6NveHbrYkSXZmsT2d95%2Bzjhh6IuzZXZ5pzhgK2PnMNYkMQyRC%2Fc8fZHOStlypSJR83CgpMm87tT3LJ5fuCQ0dysPLVRKHsqUjhowImQbqRMe8yNA6GEmndM2PQ%3D%3D)
       center center no-repeat;
     background-size: 100%;
     &:hover {
@@ -46,7 +40,7 @@ section.pic {
   }
   .pic2 {
     @include pic-frame;
-    background: url(https://images.unsplash.com/photo-1609475349547-644d546313f6?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80)
+    background: url(https://storage.googleapis.com/vue-course-api.appspot.com/youting/1628575988392.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=S0N5n5h7889bm%2BGAC0XoePdV0GHcx3hn6AkWPbs3t%2FJq7PvRjbi3A9ele8Bf2JAhgjK09eDM%2FdADqNWdjFa1cLqSE5mGpO78Fc%2FVWIY4VBxciQtjNVx%2FDAK6oxh1r4ryGi4GH262kMiMtpmNEd%2Bf070GBtxWgc33OGxt6Iwvgl7T2X1eNDqXgNdACBZIlC9HWnhJ%2F9TVnFqOA5HBuwn25HO654iEWSuZUvhZnz82SYldFwmA%2BXLNZrhBz1hR3VX6V5OIGKQpDN5iGzqFF3LeULgg2UuP%2BUCeKFYONnYOl3dC9XOmZR%2BsW2ZNPxq8Cjjv1%2FLTZJAiOtPSsym2vfoaxQ%3D%3D)
       center no-repeat;
     background-size: 100%;
     &:hover {
@@ -55,7 +49,7 @@ section.pic {
   }
   .pic3 {
     @include pic-frame;
-    background: url(https://images.unsplash.com/photo-1518057111178-44a106bad636?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80)
+    background: url(https://storage.googleapis.com/vue-course-api.appspot.com/youting/1628576015148.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=dFnZ1YgNcSFWB0FxhCxwW7MM2gjFn1Fs%2FDaFsjG9BF4tN0R2JU7ABOdSEh1BFs%2FjQNv0Oswn08benmtiqsGX9K3cJX78l9Zljodox23djqETeftBFIZbnu7FuZ4B50GucDnwGPYTxnShEg8Suv%2Bgaogjr3v2e%2FL9jdCaZXp4eyjvwH90%2BnaBsS4QRLlssEFqvDYxqEivt354iqXjb8N0yiAvYEiYs5r2oCDMEBSDuWSIOVemGtWZV5U2a6QWJ8%2F6vaYDVYzstvdF0rKJ7gE6JjNuf3XyGgYBIkPUstvITJq604SHXtdIt889%2BM8dOpizTXXciQo6dsVcNV%2F%2FsPz9sA%3D%3D)
       center no-repeat;
     background-size: 100%;
     &:hover {
@@ -64,7 +58,7 @@ section.pic {
   }
   .pic4 {
     @include pic-frame;
-    background: url(https://images.unsplash.com/photo-1509785307050-d4066910ec1e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=628&q=80)
+    background: url(https://storage.googleapis.com/vue-course-api.appspot.com/youting/1628576039491.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=KUPNXxHzSjMh8oFhLPqDYz0qmvCcfQzxP50VDFLavwlx9hXPmBAGc3ERb9fq4JbTOy7uBXasS5mEn5oqIcfU3tijQta4Yp0KiZsIq4iGkUNDj8BvGiUCCLrzCD7T9idQuEb0HISZFqwG%2FVQQ1uS%2Fp6Hyzsh%2Fyu5jraFLbx9w05%2BRf2LWwhStQXYVHLYH8sJJFFSNV6g2N%2Be9yeq%2Bot7TAUPc0iKbk7p5pR99AZuM5BgZLH80mXGFKD27M9YBJVQYnpc4Zom2kaONqUBRjsRRdirBpZGY2NFjeopkN2g0O5czv7brGz2EBDcxZCNvjcTN%2FF2kXukv7%2BiX%2FJDUPSRrWw%3D%3D)
       center no-repeat;
     background-size: 100%;
     &:hover {

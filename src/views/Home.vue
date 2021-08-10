@@ -1,7 +1,7 @@
 <template>
-  <Navbar></Navbar>
+  <Navbar/>
   <router-view> </router-view>
-  <Footer></Footer>
+  <Footer/>
 </template>
 
 <script>
@@ -15,14 +15,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.slide-enter-active,
-.slide-leave-active {
-  transition: opacity 1s, transform 0.5s;
-}
-.slide-enter, .slide-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-  transform: translateX(-30%);
-}
-</style>

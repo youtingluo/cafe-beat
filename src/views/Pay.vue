@@ -122,9 +122,6 @@ export default {
           } else {
             this.emitter.emit('push-message', res.data);
           }
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
     payment(id) {
@@ -136,14 +133,10 @@ export default {
           } else {
             this.emitter.emit('push-message', res.data);
           }
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
   },
   created() {
-    console.log(this.$route);
     const { orderId } = this.$route.params;
     this.getOrder(orderId);
   },

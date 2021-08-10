@@ -1,5 +1,5 @@
 <template>
-  <div class="bg vh-100 d-flex justify-content-center align-items-center">
+  <div class="full-page-background vh-100 d-flex justify-content-center align-items-center">
     <div class="container-fluid">
       <div
         class="
@@ -29,8 +29,8 @@
 h1 {
   font-size: 10vmin;
 }
-.bg {
-  background-image: url(https://images.unsplash.com/photo-1625520074724-dfe035d40e30?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80);
+.full-page-background {
+  background-image: url(https://storage.googleapis.com/vue-course-api.appspot.com/youting/1628572822356.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=Fw%2BQaqGvmnFdoUSTLVmkRyOfp0stng4LKIWVFuoG4Ez2SQ40dQcnijIgXpXshzwmwYRLPz1Ga%2BvfY2the8hVyCWcxdv8%2F9Yo0jocYp6AvOtXwdb6iBwNfS2h%2Fv8eSReHxzoo7beravjJVF%2F4wcuEoe7ow0YsigGDOOFWpnulhY9bnV9F6C7x%2Frnibe82OB5obJZ4zCHcFBNg5jhOPKc3tIVA5cucdoye973%2Bbuk2YdAyy7yT%2BIdqoldTpsk074ydqgTPlknWyAsHwQmPZfxdzeKTGtoJ%2F86aLKh5D2poN%2FOBIru4EqLsuUYmfOfxp1QF0oXr6OfOksAeBTJN%2B%2BQSeg%3D%3D);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

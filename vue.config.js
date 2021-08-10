@@ -1,3 +1,5 @@
 module.exports = {
-  publicPath: '/cafe-beat/',
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/cafe-beat/'
+    : '/',
 };

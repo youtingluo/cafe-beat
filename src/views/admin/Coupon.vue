@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B"/>
+  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B" />
   <div>
     <div class="text-end mt-4">
       <button class="btn btn-primary" type="button" @click="openModal(true)">
@@ -8,37 +8,53 @@
     </div>
     <table class="table mt-4">
       <thead>
-      <tr>
-        <th>名稱</th>
-        <th>折扣百分比</th>
-        <th>到期日</th>
-        <th>是否啟用</th>
-        <th>編輯</th>
-      </tr>
+        <tr>
+          <th>名稱</th>
+          <th>折扣百分比</th>
+          <th>到期日</th>
+          <th>是否啟用</th>
+          <th>編輯</th>
+        </tr>
       </thead>
       <tbody>
-      <tr v-for="item in coupons" :key="item.id">
-        <td>{{ item.title }}</td>
-        <td>{{ item.percent }}%</td>
-        <td>{{ new Date(item.due_date * 1000 ).toLocaleDateString() }}</td>
-        <td>
-          <span v-if="item.is_enabled" class="text-success">啟用</span>
-          <span v-else>未啟用</span>
-        </td>
-        <td>
-          <div class="btn-group">
-            <button class="btn btn-outline-primary btn-sm"
-            @click="openModal(false, item)">編輯</button>
-            <button class="btn btn-outline-danger btn-sm"
-            @click="openDelModal(item)">刪除</button>
-          </div>
-        </td>
-      </tr>
+        <tr v-for="item in coupons" :key="item.id">
+          <td>{{ item.title }}</td>
+          <td>{{ item.percent }}%</td>
+          <td>{{ new Date(item.due_date * 1000).toLocaleDateString() }}</td>
+          <td>
+            <span v-if="item.is_enabled" class="text-success">啟用</span>
+            <span v-else>未啟用</span>
+          </td>
+          <td>
+            <div class="btn-group">
+              <button
+                class="btn btn-outline-primary btn-sm"
+                @click="openModal(false, item)"
+              >
+                編輯
+              </button>
+              <button
+                class="btn btn-outline-danger btn-sm"
+                @click="openDelModal(item)"
+              >
+                刪除
+              </button>
+            </div>
+          </td>
+        </tr>
       </tbody>
     </table>
-    <CouponModal :isNew="isNew" :coupon="tempCoupon" ref="couponModal"
-    @update-coupon="updateCoupon"></CouponModal>
-    <DelModal :del-item="tempCoupon" ref="delModal" @delete-item="deleteCoupon"></DelModal>
+    <CouponModal
+      :isNew="isNew"
+      :coupon="tempCoupon"
+      ref="couponModal"
+      @update-coupon="updateCoupon"
+    />
+    <DelModal
+      :del-item="tempCoupon"
+      ref="delModal"
+      @delete-item="deleteCoupon"
+    />
   </div>
 </template>
 
@@ -89,11 +105,10 @@ export default {
       }
       this.$http[method](api, { data: this.tempCoupon }).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.$refs.couponModal.hideModal();
           this.getCoupons();
+          this.isLoading = false;
         } else {
-          console.log('新增失敗');
           this.$refs.couponModal.hideModal();
         }
       });
@@ -102,13 +117,11 @@ export default {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`;
       this.$http.delete(api).then((res) => {
-        console.log(res);
         if (res.data.success) {
           this.isLoading = false;
           this.$refs.delModal.hideModal();
           this.getCoupons();
         } else {
-          console.log('刪除失敗');
           this.$refs.delModal.hideModal();
         }
       });

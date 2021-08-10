@@ -1,8 +1,10 @@
 <template>
-  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B"/>
+  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B" />
   <div class="container">
     <div class="text-end mt-3">
-      <button type="button" class="btn btn-primary" @click="openModal(true)">建立新產品</button>
+      <button type="button" class="btn btn-primary" @click="openModal(true)">
+        建立新產品
+      </button>
     </div>
     <table class="table mt-4">
       <thead>
@@ -31,26 +33,41 @@
           </td>
           <td>
             <div class="btn-group">
-              <button type="button" class="btn btn-outline-primary btn-sm"
-              @click="openModal(false,item)">編輯</button>
-              <button type="button" class="btn btn-outline-danger btn-sm"
-              @click="openDelModal(item)">刪除</button>
+              <button
+                type="button"
+                class="btn btn-outline-primary btn-sm"
+                @click="openModal(false, item)"
+              >
+                編輯
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-danger btn-sm"
+                @click="openDelModal(item)"
+              >
+                刪除
+              </button>
             </div>
           </td>
         </tr>
       </tbody>
     </table>
-
-    <!-- ProductModal -->
-    <ProductModal :isNew="isNew" :product="tempProduct" ref="productModal"
-    @update-product="updateProduct"></ProductModal>
-    <DelModal :del-item="tempProduct" ref="delModal" @delete-item="deleteProduct"></DelModal>
-    <Pagination :pages="pagination" @get-page="getProducts"></Pagination>
+    <ProductModal
+      :isNew="isNew"
+      :product="tempProduct"
+      ref="productModal"
+      @update-product="updateProduct"
+    />
+    <DelModal
+      :del-item="tempProduct"
+      ref="delModal"
+      @delete-item="deleteProduct"
+    />
+    <Pagination :pages="pagination" @get-page="getProducts" />
   </div>
 </template>
 
 <script>
-// 匯入 Modal 等子元件
 import ProductModal from '@/components/ProductModal.vue'; // 自定義所以需要副檔名
 import DelModal from '@/components/DelModal.vue';
 import Pagination from '@/components/Pagination.vue';
@@ -66,14 +83,12 @@ export default {
       isLoading: false,
     };
   },
-  // 區域註冊元件
   components: {
     ProductModal,
     DelModal,
     Pagination,
   },
   methods: {
-    // 開啟產品 Modal
     openModal(isNew, item) {
       if (isNew) {
         this.tempProduct = {};
@@ -85,22 +100,19 @@ export default {
       const productComponent = this.$refs.productModal;
       productComponent.openModal();
     },
-    // 開啟刪除 Modal
     openDelModal(item) {
       this.tempProduct = { ...item };
       const delComponent = this.$refs.delModal;
       delComponent.openModal();
     },
-    // 取得產品
     getProducts(page = 1) {
       this.isLoading = true;
-      // API
       const api = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/admin/products?page=${page}`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.products = res.data.products;
           this.pagination = res.data.pagination;
+          this.isLoading = false;
         } else {
           console.log(res.data.message);
         }
@@ -121,7 +133,6 @@ export default {
           this.$refs.productModal.hideModal();
           this.getProducts();
         } else {
-          console.log('新增失敗');
           this.$refs.productModal.hideModal();
         }
       });
@@ -130,13 +141,11 @@ export default {
       this.isLoading = true;
       const api = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`;
       this.$http.delete(api).then((res) => {
-        console.log(res);
         if (res.data.success) {
           this.isLoading = false;
           this.$refs.delModal.hideModal();
           this.getProducts();
         } else {
-          console.log('刪除失敗');
           this.$refs.delModal.hideModal();
         }
       });

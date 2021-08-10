@@ -5,7 +5,7 @@
     loader="bars"
     color="#84543B"
   />
-  <div class="container-fluid mt-5">
+  <div class="container mt-5">
     <div class="row">
       <div class="col-lg-3 mb-3 mb-lg-0">
         <div class="list-group">
@@ -35,7 +35,7 @@
         <div :class="{ breath: filterAni }"></div>
         <div class="row" :class="{ productLight: filterAni }">
           <div
-            class="col-md-6 col-xl-4 mb-4"
+            class="col-md-6 col-xl-6 mb-4"
             v-for="item in filterProducts"
             :key="item.id"
           >
@@ -127,9 +127,6 @@ export default {
             this.emitter.emit('push-message', res.data);
             this.icon.isLoading = '';
           }
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
     getProducts(page = 1) {
@@ -140,22 +137,25 @@ export default {
           if (res.data.success) {
             this.products = res.data.products;
             this.pagination = res.data.pagination;
-            this.isLoading = false;
+            setTimeout(() => {
+              this.isLoading = false;
+            }, 500);
           } else {
             this.emitter.emit('push-message', res.data);
           }
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
     getAllproducts() {
+      this.isLoading = true;
       this.$http
         .get(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/products/all`)
         .then((res) => {
           if (res.data.success) {
             this.allProducts = res.data.products;
             this.getCategories();
+            setTimeout(() => {
+              this.isLoading = false;
+            }, 500);
           } else {
             this.emitter.emit('push-message', res.data);
           }

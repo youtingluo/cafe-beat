@@ -1,4 +1,11 @@
 <template>
+  <Loading
+    :active="isLoading"
+    :z-index="1060"
+    loader="bars"
+    color="#84543B"
+    opacity=0.8
+  />
   <div class="banner d-flex align-items-center justify-content-center">
     <h2
       class="
@@ -35,14 +42,6 @@
       <div class="row">
         <div class="col-md-7 col-lg-8">
           <table ref="tableContainer" class="table text-primary position-relative">
-            <Loading
-              :container="$refs.tableContainer"
-              :active="isLoading"
-              :z-index="1060"
-              loader="bars"
-              color="#84543B"
-              :is-full-page="false"
-            ></Loading>
             <thead class="text-dark bg-secondary border-0">
               <tr>
                 <th>品項</th>
@@ -184,8 +183,8 @@
               g-0
               justify-content-between
               py-3
-              bg-dark
-              text-white text-nowrap
+              text-nowrap
+              border-bottom
             "
             v-for="item in carts.carts"
             :key="item.id"
@@ -202,7 +201,7 @@
               <div class="text-end pe-3">NT$ {{ item.total }}</div>
             </div>
           </div>
-          <div class="text-end p-3 bg-light text-dark">
+          <div class="text-end p-3">
             <h4 class="fw-bold">總價：NT$ {{ carts.final_total }}</h4>
           </div>
         </div>
@@ -242,9 +241,6 @@ export default {
             this.isLoading = false;
             this.emitter.emit('push-message', res.data);
           }
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
     updateCart(item, qty) {
@@ -264,9 +260,6 @@ export default {
             this.isLoading = false;
             this.emitter.emit('push-message', res.data);
           }
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
     removeCarts(id) {
@@ -282,9 +275,6 @@ export default {
           } else {
             this.emitter.emit('push-message', res.data);
           }
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
     removeAllCarts() {
@@ -297,9 +287,6 @@ export default {
           } else {
             this.emitter.emit('push-message', res.data);
           }
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
     goNext() {

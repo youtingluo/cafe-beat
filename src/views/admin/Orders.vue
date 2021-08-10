@@ -1,5 +1,5 @@
 <template>
-  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B"/>
+  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B" />
   <div class="container">
     <table class="table mt-4">
       <thead>
@@ -14,26 +14,30 @@
       </thead>
       <tbody>
         <tr v-for="item in orders" :key="item.id">
-          <td>{{ new Date(item.create_at * 1000 ).toLocaleDateString() }}</td>
+          <td>{{ new Date(item.create_at * 1000).toLocaleDateString() }}</td>
           <td>{{ item.user.name }}</td>
           <td>
             <ul class="list-unstyled">
               <li v-for="(product, key) in item.products" :key="key">
-                <strong class="text-primary">{{ product.product.title }}</strong>
+                <strong class="text-primary">{{
+                  product.product.title
+                }}</strong>
                 / {{ product.qty }} {{ product.product.unit }} /
                 <em class="text-info">$ {{ product.total }}</em>
               </li>
             </ul>
           </td>
-          <td class="text-end">
-            NT$ {{ item.total }}
-          </td>
+          <td class="text-end">NT$ {{ item.total }}</td>
           <td>
             <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox"
-              id="is_paid" :checked="item.is_paid" @change="updatePaid(item)">
-              <label class="form-check-label" for="is_paid">
-              </label>
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="is_paid"
+                :checked="item.is_paid"
+                @change="updatePaid(item)"
+              />
+              <label class="form-check-label" for="is_paid"> </label>
             </div>
             <span v-if="item.is_paid" class="text-success">已付款</span>
             <span v-else>未付款</span>
@@ -45,7 +49,7 @@
       </tbody>
     </table>
   </div>
-  <Pagination :pages="pagination" @get-page="getOrders"></Pagination>
+  <Pagination :pages="pagination" @get-page="getOrders" />
 </template>
 
 <script>
@@ -68,10 +72,9 @@ export default {
       const api = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/admin/orders?page=${page}`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
-          console.log(res.data);
-          this.isLoading = false;
           this.orders = res.data.orders;
           this.pagination = res.data.pagination;
+          this.isLoading = false;
         }
       });
     },

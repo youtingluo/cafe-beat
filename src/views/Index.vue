@@ -32,7 +32,7 @@
         <div class="col-lg-4">
           <img
             class="img-fluid rounded rounded-5 border border-5"
-            src="https://images.unsplash.com/photo-1504538292323-20e79775474d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80"
+            src="https://storage.googleapis.com/vue-course-api.appspot.com/youting/1628573548125.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=iP9enZN6TyGyWwDwn6JKx2XiG0djB8eIJaDFk1h0u936NwdS3%2FyMVL9FPFDDJdPvzQVJ0%2BDWIsMQwFNvIcjH4Iww4zEy8SFI43qqcYBjRgIhpDy%2BIfavUPZ6wE1xDfVRE073qiLcUTB1RuqTVguivAmxQCCDvIoQtZKy22YYyUwS%2FgIv5H5j3b%2Bnf1C437DJlP82Q%2FRwywg9VSFR7b3GQW5WeqeVULlH750ybnllg3lmVzlsCXDxu%2BKgOby2r%2FYWJUD%2BRGm5ZOGX0lI%2FPvgzkIAnY8CMdOvcZXA8Z%2BzmVDjhqyEl3%2FFI6I0C2BplQrs9HL8xlp1iDlHeDVPsxbKBiA%3D%3D"
             alt="coffee bean"
           />
         </div>
@@ -47,7 +47,7 @@
       <div class="row align-items-center">
         <div class="col-sm-9">
           <h2 class="h1 my-4">探索我們更多產品</h2>
-          <Button></Button>
+          <Button />
         </div>
         <div class="col-sm-3">
           <img class="img-fluid" src="../assets/img/cup.svg" alt="cup" />
@@ -63,7 +63,11 @@
       <div class="row">
         <div class="col-md-4 mb-5 mb-md-0">
           <div class="h-100 d-flex flex-column justify-content-between">
-            <img class="img-fluid" src="../assets/img/breakfast.svg" alt="breakfast" />
+            <img
+              class="img-fluid"
+              src="../assets/img/breakfast.svg"
+              alt="breakfast"
+            />
             <h3 class="h3 text-center mt-5">早餐時，你需要它</h3>
           </div>
         </div>
@@ -76,7 +80,11 @@
         <div class="col-md-4">
           <div class="h-100 d-flex flex-column justify-content-between">
             <div>
-              <img class="img-fluid" src="../assets/img/social.svg" alt="social" />
+              <img
+                class="img-fluid"
+                src="../assets/img/social.svg"
+                alt="social"
+              />
             </div>
             <div><h3 class="h3 text-center mt-5">社交時，你需要它</h3></div>
           </div>
@@ -104,7 +112,7 @@
         <div class="col-sm-6">
           <img
             class="img-fluid rounded-pill mb-5 mb-md-0"
-            src="https://images.unsplash.com/photo-1540965555-ef9a836372ed?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            src="https://storage.googleapis.com/vue-course-api.appspot.com/youting/1628573581022.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=W9lYtJNOH1nBXAP85CNG2xS0kYL5rMZEUsPQFakS1X5tVvFCeVWbwIB0kSZm5TxC6LWgwhmobDjtcCMZXpo4oSAwG%2BRKOUpChY2dVKPKJfmnkr3L%2Bk4Wb%2FGY3RTa1joP3omf6KsbNDUq7ofjFJvJV16aQKozE5CFm9%2Fr1p3rxKLsf%2By%2BbCYUmTt%2FWiplfMQoOkkYN%2BRKGp6KY71hxUU%2FtKvTbunc7cXkzA6NK%2FS6n2zBvdskzVQ0HKBjlO4ISAW5%2BFP3HZH6GjoylYwprE%2F9xsRgAA%2FJHhMvy39M%2FzJBGC6YqK1yhtPxjwygkePfNo%2BgIyxyDIM3fh3dId7hsA578Q%3D%3D"
             alt="淺焙咖啡"
           />
         </div>
@@ -113,7 +121,7 @@
         <div class="col-sm-6 order-last order-sm-first">
           <img
             class="img-fluid rounded-pill mb-5 mb-md-0"
-            src="https://images.unsplash.com/photo-1587049016823-69ef9d68bd44?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            src="https://storage.googleapis.com/vue-course-api.appspot.com/youting/1628573610305.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=NIMKjgpIoE%2FHVAshppQVs0zLLZUBffZnBtgp6wBuWDEIVOxGmnieHZtEs8RPGbdJlL9EPItYVdHeHzVqFEiNXaqLZ1wsZN%2BcyTWSwDga3ig8MrZe5O9qmGsq2IMsxAmx8WRcun%2B8iUl5duOs%2BUJ%2BypOKoLPsS20lirPpdVbAEZXEsriAlgVsAtbLmvkkw%2BAb6akgn%2BAcyr7r5g%2B0V0osL6M81KKmnq0EsXUBL4Mmy%2BRsUgwpahof%2BegRBUCNYxWUhU6cbQ6o9rK5pH5Mpn2yXEuwUGUhfs99vBHtKSkYwZGFKeScj5ZZXlRqH%2FocHh4jYVqUkFepv8Xz1%2FIsUeCB4g%3D%3D"
             alt="中焙咖啡"
           />
         </div>
@@ -143,7 +151,7 @@
         <div class="col-sm-6">
           <img
             class="img-fluid rounded-pill mb-5 mb-md-0"
-            src="https://images.unsplash.com/photo-1611691934391-5a8805e0bd1a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+            src="https://storage.googleapis.com/vue-course-api.appspot.com/youting/1628573641640.jpg?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=BGG7LvTo5eh626NQmW8CKUn7Z6C8yHOaxmv9QlO5Rc0w7V82y7nzUKzTP%2BrxFM3tw9yEtHMcGVXQ8JQGsfDrJlQWHb2zvVd%2BxsfX36Ndgmf7veiag14cveCIZf9U6RygJFkAcepVnqjZEWwrOssIzw6ZZm2eEVE9rvdBZo0QcowA36%2BAedkJJxr4m%2FDe6BkdOXoThCk9Fa6PyJ%2FJKW%2BlUAFhgkywYtHtEYz0Hj5%2FSHCX8EiHpTu1Y3JBufePdOhBwXhIunV9Flmwy4UX3HS1rVy54dyTJyzGJdB0%2FRTmcx6QwV7PK39YY%2BqvmPBR7r6L8dlRevECJQ1WaZSWqKzeng%3D%3D"
             alt="深焙咖啡"
           />
         </div>
@@ -152,20 +160,14 @@
   </section>
 
   <!-- 我們的商品 -->
-  <section class="sectionContact bg-secondary">
+  <section class="sectionContact bg-secondary py-5">
+    <h2 class="text-center text-dark fw-bold pb-3">
+      <span class="material-icons-outlined"> email </span> 聯絡我們
+    </h2>
     <div class="container">
-      <div class="position-relative">
-        <img src="../assets/img/mail.svg" alt="mail" class="img-fluid mail" />
-        <div class="contact position-absolute rounded-3">
-          <h2 class="text-center text-light fw-bold pb-3">
-            <span class="material-icons-outlined"> email </span> 聯絡我們 ↴
-          </h2>
-          <ul class="contact-text">
-            <li class="mb-2">公司：cafe beat 股份有限公司</li>
-            <li class="mb-2">地址：新北市三重區正義南路 87 號 1F</li>
-            <li class="mb-2">電話：<a href="telto:02-22551234">02-22551234</a></li>
-            <li class="mb-2">聯絡人：羅先生</li>
-          </ul>
+      <div class="row align-items-center justify-content-center">
+        <div class="col-md-9 col-lg-6">
+          <BusinessCard/>
         </div>
       </div>
     </div>
@@ -174,10 +176,12 @@
 
 <script>
 import Button from '@/components/Button.vue';
+import BusinessCard from '@/components/BusinessCard.vue';
 
 export default {
   components: {
     Button,
+    BusinessCard,
   },
 };
 </script>

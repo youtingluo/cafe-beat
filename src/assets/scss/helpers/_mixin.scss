@@ -1,0 +1,21 @@
+@mixin pic-frame {
+  filter: brightness(0.5);
+  transition-duration: 0.5s;
+  padding: 170px 0;
+  background-size: 100%;
+}
+@mixin pad {
+  @media (max-width: 769px) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media (max-width: 426px) {
+    @content;
+  }
+}
+@mixin small-mobile {
+  @media (max-width: 375px) {
+    @content;
+  }
+}

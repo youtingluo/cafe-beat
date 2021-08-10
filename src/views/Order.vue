@@ -20,22 +20,7 @@
       填寫資料
     </h2>
   </div>
-  <section class="py-5 text-center" v-if="!carts.final_total">
-    <h3>您的購物車是空的</h3>
-    <div>
-      <img
-        class="mb-3"
-        src="../assets/img/sad_cup.svg"
-        title="購物車是空的"
-        alt="sad_cup"
-      />
-    </div>
-    <router-link to="/products" class="btn btn-outline-primary">
-      <span class="align-middle material-icons-outlined"> shopping_cart </span
-      >去購物</router-link
-    >
-  </section>
-  <section class="py-5" v-else>
+  <section class="py-5">
     <div class="container">
       <div class="row">
         <div class="col-lg-8">
@@ -53,11 +38,11 @@
                 placeholder="請輸入姓名"
                 rules="required"
                 v-model="form.user.name"
-              ></Field>
-              <error-message
+              />
+              <ErrorMessage
                 name="姓名"
                 class="invalid-feedback"
-              ></error-message>
+              />
             </div>
 
             <div class="mb-3">
@@ -73,11 +58,11 @@
                 placeholder="請輸入信箱"
                 rules="email|required"
                 v-model="form.user.email"
-              ></Field>
-              <error-message
+              />
+              <ErrorMessage
                 name="信箱"
                 class="invalid-feedback"
-              ></error-message>
+              />
             </div>
 
             <div class="mb-3">
@@ -93,11 +78,11 @@
                 placeholder="請輸入電話"
                 rules="required|numeric|min:8|max:10"
                 v-model="form.user.tel"
-              ></Field>
-              <error-message
+              />
+              <ErrorMessage
                 name="電話"
                 class="invalid-feedback"
-              ></error-message>
+              />
             </div>
 
             <div class="mb-3">
@@ -113,11 +98,11 @@
                 placeholder="請輸入地址"
                 rules="required"
                 v-model="form.user.address"
-              ></Field>
-              <error-message
+              />
+              <ErrorMessage
                 name="地址"
                 class="invalid-feedback"
-              ></error-message>
+              />
             </div>
 
             <div class="mb-3">
@@ -152,7 +137,7 @@
           </Form>
         </div>
         <div class="col-lg-4">
-          <div class="text-center p-3 text-white bg-secondary">
+          <div class="text-center p-3 text-dark bg-light">
             <h4 class="fw-bold">訂單列表</h4>
           </div>
           <div
@@ -161,8 +146,8 @@
               g-0
               justify-content-between
               py-3
-              bg-primary
-              text-white text-nowrap
+              text-nowrap
+              border-bottom
             "
             v-for="item in carts.carts"
             :key="item.id"
@@ -179,7 +164,7 @@
               <div class="text-end pe-3">NT$ {{ item.total }}</div>
             </div>
           </div>
-          <div class="text-end p-3 bg-secondary text-dark">
+          <div class="text-end p-3">
             <h4 class="fw-bold">總價：NT$ {{ carts.final_total }}</h4>
           </div>
         </div>
@@ -198,10 +183,7 @@ export default {
       icon: {
         isLoading: false,
       },
-      carts: {
-        carts: [],
-        final_total: 0,
-      },
+      carts: {},
       form: {
         user: {
           name: '',
@@ -211,7 +193,6 @@ export default {
         },
         message: '',
       },
-      validate: null,
     };
   },
   computed: {
@@ -235,9 +216,6 @@ export default {
             this.isLoading = false;
             this.emitter.emit('push-message', res.data);
           }
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
     sendOrder() {
@@ -247,25 +225,19 @@ export default {
         .then((res) => {
           if (res.data.success) {
             if (res.data.orderId) {
-              this.icon.isLoading = false;
               this.emitter.emit('push-message', res.data);
               this.emitter.emit('update-cart');
               this.$router.push(`/pay/${res.data.orderId}`);
+              this.icon.isLoading = false;
             }
           } else {
             this.emitter.emit('push-message', res.data);
           }
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
   },
   created() {
     this.getCarts();
-    this.emitter.on('update-cart', () => {
-      this.getCarts();
-    });
   },
 };
 </script>

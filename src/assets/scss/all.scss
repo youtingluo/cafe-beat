@@ -7,9 +7,12 @@
 // ---- component ----
 // UserNavbar
 @import './helpers/component/userNavbar';
+@import './helpers/mixin';
+@import './helpers/utility';
 
 // ---- pages ----
 // index
 @import './pages/index';
 @import './pages/cart';
 @import './pages/about';
+@import './pages/product';
