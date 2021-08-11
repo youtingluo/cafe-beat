@@ -246,12 +246,10 @@ export default {
       for (let i = 0; arrSet.size < maxSize; i + 1) {
         const num = getRandomInt(filterCategory.length);
         arrSet.add(num);
-        console.log(arrSet);
       }
       arrSet.forEach((i) => {
         this.similarProducts.push(filterCategory[i]);
       });
-      console.log(this.similarProducts);
     },
     addToCart(id) {
       const cart = { product_id: id, qty: this.qty };
