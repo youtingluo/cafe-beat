@@ -123,7 +123,7 @@
               </div>
               <button
                 class="btn btn-primary"
-                :class="{ 'not-allowed': !isComplete }"
+                :class="{ 'not-allowed': !isComplete, 'disabled' : icon.isLoading }"
                 type="submit"
                 :disabled="!isComplete"
               >

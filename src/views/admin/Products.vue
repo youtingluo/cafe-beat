@@ -73,6 +73,7 @@ import DelModal from '@/components/DelModal.vue';
 import Pagination from '@/components/Pagination.vue';
 
 export default {
+  inject: ['emitter'],
   name: 'Products',
   data() {
     return {
@@ -114,7 +115,7 @@ export default {
           this.pagination = res.data.pagination;
           this.isLoading = false;
         } else {
-          console.log(res.data.message);
+          this.emitter.emit('push-message', res.data);
         }
       });
     },
@@ -129,9 +130,10 @@ export default {
       }
       this.$http[method](api, { data: this.tempProduct }).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.$refs.productModal.hideModal();
           this.getProducts();
+          this.emitter.emit('push-message', res.data);
+          this.isLoading = false;
         } else {
           this.$refs.productModal.hideModal();
         }
@@ -142,9 +144,10 @@ export default {
       const api = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`;
       this.$http.delete(api).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.$refs.delModal.hideModal();
           this.getProducts();
+          this.emitter.emit('push-message', res.data);
+          this.isLoading = false;
         } else {
           this.$refs.delModal.hideModal();
         }

@@ -1,10 +1,5 @@
 <template>
-  <Loading
-    :active="isLoading"
-    :z-index="1060"
-    loader="bars"
-    color="#84543B"
-  />
+  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B" />
   <div class="banner d-flex align-items-center justify-content-center">
     <h2
       class="
@@ -55,12 +50,18 @@
         <img src="../assets/img/cup.svg" alt="cup image" />
       </div>
       <div class="text-center mb-3">
-        <div
+        <button
+          type="button"
           class="btn btn-primary text-center btn-lg"
+          :disabled="icon.isLoading"
           @click="payment(order.id)"
         >
-          確認付款
-        </div>
+          <span
+            v-if="icon.isLoading"
+            class="spinner-border spinner-border-sm me-3"
+          ></span
+          >確認付款
+        </button>
       </div>
     </div>
     <div class="text-dark bg-primary text-white">
@@ -106,6 +107,9 @@ export default {
   data() {
     return {
       order: {},
+      icon: {
+        isLoading: false,
+      },
       isLoading: false,
       orderId: '',
     };
@@ -125,11 +129,13 @@ export default {
         });
     },
     payment(id) {
+      this.icon.isLoading = true;
       this.$http
         .post(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/pay/${id}`)
         .then((res) => {
           if (res.data.success) {
             this.$router.push(`/complete/${id}`);
+            this.icon.isLoading = false;
           } else {
             this.emitter.emit('push-message', res.data);
           }

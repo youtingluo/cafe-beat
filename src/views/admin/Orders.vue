@@ -56,6 +56,7 @@
 import Pagination from '@/components/Pagination.vue';
 
 export default {
+  inject: ['emitter'],
   data() {
     return {
       orders: [],
@@ -75,6 +76,9 @@ export default {
           this.orders = res.data.orders;
           this.pagination = res.data.pagination;
           this.isLoading = false;
+        } else {
+          this.emitter.emit('push-message', res.data);
+          this.isLoading = false;
         }
       });
     },
@@ -86,10 +90,11 @@ export default {
       };
       this.$http.put(api, { data: paid }).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.getOrders();
+          this.emitter.emit('push-message', res.data);
+          this.isLoading = false;
         } else {
-          console.log(res.data);
+          this.emitter.emit('push-message', res.data);
         }
       });
     },

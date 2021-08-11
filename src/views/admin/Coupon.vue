@@ -63,6 +63,7 @@ import CouponModal from '@/components/CouponModal.vue';
 import DelModal from '@/components/DelModal.vue';
 
 export default {
+  inject: ['emitter'],
   data() {
     return {
       coupons: [],
@@ -107,9 +108,11 @@ export default {
         if (res.data.success) {
           this.$refs.couponModal.hideModal();
           this.getCoupons();
+          this.emitter.emit('push-message', res.data);
           this.isLoading = false;
         } else {
           this.$refs.couponModal.hideModal();
+          this.emitter.emit('push-message', res.data);
         }
       });
     },
@@ -118,11 +121,13 @@ export default {
       const api = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`;
       this.$http.delete(api).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
-          this.$refs.delModal.hideModal();
           this.getCoupons();
+          this.$refs.delModal.hideModal();
+          this.emitter.emit('push-message', res.data);
+          this.isLoading = false;
         } else {
           this.$refs.delModal.hideModal();
+          this.emitter.emit('push-message', res.data);
         }
       });
     },
@@ -131,8 +136,8 @@ export default {
       const api = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/admin/coupons?page=${page}`;
       this.$http.get(api).then((res) => {
         if (res.data.success) {
-          this.isLoading = false;
           this.coupons = res.data.coupons;
+          this.isLoading = false;
         }
       });
     },

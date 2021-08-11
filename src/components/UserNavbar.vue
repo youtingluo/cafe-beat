@@ -17,24 +17,26 @@
         >
       </div>
       <a
-        class="cart me-2 text-decoration-none d-line-block d-lg-none"
+        class="cart me-3 text-decoration-none d-block d-lg-none position-relative"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasRight"
         aria-controls="offcanvasRight"
       >
-        <span class="material-icons align-middle fs-2"> shopping_cart </span
-        ><span
+        <span class="material-icons align-middle fs-1"> shopping_cart </span
+        ><small
           class="
-            fs-7
+            cart-num-position
             badge
             text-white
             bg-primary
             rounded-circle
             border border-primary
             shadow
+            position-absolute
+            start-50
           "
         >
-          {{ carts.carts.length }}</span
+          {{ carts.carts.length }}</small
         ></a
       >
       <button
@@ -80,25 +82,27 @@
           </li>
           <li>
             <a
-              class="cart me-2 text-decoration-none d-none d-lg-block"
+              class="cart me-2 text-decoration-none d-none d-lg-block position-relative"
               data-bs-toggle="offcanvas"
               data-bs-target="#offcanvasRight"
               aria-controls="offcanvasRight"
             >
-              <span class="material-icons align-middle me-2 fs-2">
+              <span class="material-icons align-middle fs-2">
                 shopping_cart </span
-              ><span
+              ><small
                 class="
-                  fs-6
                   badge
                   text-white
                   bg-primary
                   rounded-circle
                   border border-primary
                   shadow
+                  position-absolute
+                  end-0
+                  top-0
                 "
               >
-                {{ carts.carts.length }}</span
+                {{ carts.carts.length }}</small
               ></a
             >
           </li>
@@ -130,7 +134,7 @@
       ></button>
     </div>
     <div class="offcanvas-body position-relative pb-5">
-      <Cart></Cart>
+      <Cart/>
     </div>
 
     <router-link
@@ -193,3 +197,10 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.cart-num-position {
+  top: -10px;
+  font-size: 10px;
+}
+</style>
