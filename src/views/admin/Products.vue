@@ -1,5 +1,10 @@
 <template>
-  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B" />
+  <Loading
+    :active="isLoading"
+    :z-index="1060"
+    loader="bars"
+    color="#84543B"
+  />
   <div class="container">
     <div class="text-end mt-3">
       <button type="button" class="btn btn-primary" @click="openModal(true)">
@@ -116,6 +121,7 @@ export default {
           this.isLoading = false;
         } else {
           this.emitter.emit('push-message', res.data);
+          this.isLoading = false;
         }
       });
     },
@@ -136,6 +142,7 @@ export default {
           this.isLoading = false;
         } else {
           this.$refs.productModal.hideModal();
+          this.isLoading = false;
         }
       });
     },

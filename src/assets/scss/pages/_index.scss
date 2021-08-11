@@ -89,9 +89,6 @@ section.life {
       top: -18%;
     }
   }
-  .photo {
-    background-image: url(https://images.unsplash.com/photo-1504538292323-20e79775474d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80);
-  }
 }
 section.why {
   .poly {
@@ -106,56 +103,6 @@ section.way {
   p {
     line-height: 2rem;
     font-size: 1.2rem;
-  }
-}
-section.product {
-  .product {
-    background-color: #eee;
-  }
-  .bg-lg {
-    height: 500px;
-    background-size: cover;
-    background-position: center;
-    @include pad {
-      height: 300px;
-    }
-  }
-  .bg {
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-  }
-  .button {
-    text-decoration: none;
-    padding: 1rem;
-    background-color: #84543b;
-    color: #fff;
-    position: relative;
-    z-index: 10;
-    &:hover {
-      color: #fff;
-    }
-    &::before {
-      transition: 0.3s ease-in-out;
-      content: '';
-      position: absolute;
-      left: -1px;
-      top: 0;
-      width: 0px;
-      height: 100%;
-      background-color: #e6af21;
-      z-index: -1;
-    }
-    &:hover::before {
-      content: '';
-      left: 0;
-      top: 0;
-      width: 100%;
-    }
-  }
-  .bg-cover {
-    background-size: cover;
-    background-position: center center;
   }
 }
 

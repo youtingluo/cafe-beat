@@ -17,7 +17,7 @@
         >
       </div>
       <a
-        class="cart me-3 text-decoration-none d-block d-lg-none position-relative"
+        class="cart me-4 text-decoration-none d-block d-lg-none position-relative"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasRight"
         aria-controls="offcanvasRight"
@@ -27,7 +27,6 @@
           class="
             cart-num-position
             badge
-            text-white
             bg-primary
             rounded-circle
             border border-primary
@@ -92,7 +91,6 @@
               ><small
                 class="
                   badge
-                  text-white
                   bg-primary
                   rounded-circle
                   border border-primary

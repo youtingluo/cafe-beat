@@ -1,11 +1,5 @@
 <template>
-  <Loading
-    :active="isLoading"
-    :z-index="1060"
-    loader="bars"
-    color="#84543B"
-    opacity=0.8
-  />
+  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B" />
   <div class="banner d-flex align-items-center justify-content-center">
     <h2
       class="
@@ -32,16 +26,76 @@
       />
     </div>
     <router-link to="/products" class="btn btn-outline-primary"
-      ><span class="align-middle material-icons-outlined">
-      shopping_cart
-      </span>去購物</router-link
+      ><span class="align-middle material-icons-outlined"> shopping_cart </span
+      >去購物</router-link
     >
   </section>
-  <section class="py-5" v-else>
+  <section class="py-5 vh-100" v-else>
     <div class="container">
-      <div class="row">
+      <div class="position-relative m-4">
+        <div class="progress" style="height: 1px">
+          <div
+            class="progress-bar"
+            role="progressbar"
+            aria-valuenow="50"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+        <div
+          class="
+            position-absolute
+            top-0
+            start-0
+            translate-middle
+            text-center
+            rounded-pill
+            px-3
+            py-2
+          "
+          :class="stepClass"
+        >
+          1
+        </div>
+        <div
+          class="
+            position-absolute
+            top-0
+            start-50
+            translate-middle
+            bg-light
+            text-dark
+            text-center
+            rounded-pill
+            px-3
+            py-2
+          "
+        >
+          2
+        </div>
+        <div
+          class="
+            position-absolute
+            top-0
+            start-100
+            translate-middle
+            bg-light
+            text-dark
+            text-center
+            rounded-pill
+            px-3
+            py-2
+          "
+        >
+          3
+        </div>
+      </div>
+      <div class="row pt-5">
         <div class="col-md-7 col-lg-8">
-          <table ref="tableContainer" class="table text-primary position-relative">
+          <table
+            ref="tableContainer"
+            class="table text-primary position-relative"
+          >
             <thead class="text-dark bg-secondary border-0">
               <tr>
                 <th>品項</th>
@@ -216,6 +270,7 @@ export default {
   inject: ['emitter'],
   data() {
     return {
+      stepClass: ['bg-primary', 'text-white'],
       carts: {
         carts: [],
         final_total: 0,

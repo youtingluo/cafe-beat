@@ -22,7 +22,65 @@
   </div>
   <section class="py-5">
     <div class="container">
-      <div class="row">
+      <div class="position-relative m-4">
+        <div class="progress" style="height: 1px">
+          <div
+            :style="`width: ${width}%`"
+            class="progress-bar"
+            role="progressbar"
+            aria-valuenow="50"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+        <div
+          class="
+            position-absolute
+            top-0
+            start-0
+            translate-middle
+            text-center
+            rounded-pill
+            px-3
+            py-2
+          "
+          :class="stepClass"
+        >
+          1
+        </div>
+        <div
+          class="
+            position-absolute
+            top-0
+            start-50
+            translate-middle
+            text-center
+            rounded-pill
+            px-3
+            py-2
+          "
+          :class="stepClass"
+        >
+          2
+        </div>
+        <div
+          class="
+            position-absolute
+            top-0
+            start-100
+            translate-middle
+            bg-light
+            text-dark
+            text-center
+            rounded-pill
+            px-3
+            py-2
+          "
+        >
+          3
+        </div>
+      </div>
+      <div class="row pt-5">
         <div class="col-lg-8">
           <Form ref="orderForm" v-slot="{ errors }" @submit="sendOrder">
             <div class="mb-3">
@@ -179,6 +237,8 @@ export default {
   inject: ['emitter'],
   data() {
     return {
+      width: 50,
+      stepClass: ['bg-primary', 'text-white'],
       isLoading: false,
       icon: {
         isLoading: false,

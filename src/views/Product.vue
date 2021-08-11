@@ -1,10 +1,5 @@
 <template>
-  <Loading
-    :active="isLoading"
-    :z-index="1060"
-    loader="bars"
-    color="#84543B"
-  />
+  <Loading :active="isLoading" :z-index="1060" loader="bars" color="#84543B" />
   <div class="banner d-flex align-items-center justify-content-center">
     <h2
       class="
@@ -20,7 +15,7 @@
       產品內容
     </h2>
   </div>
-  <section class="product">
+  <section>
     <div class="row g-0">
       <div class="col-lg-6 background">
         <div
@@ -144,9 +139,59 @@
       </div>
     </div>
   </section>
+  <section class="py-5">
+    <div class="container">
+      <h2 class="mb-3">你可能會喜歡 ...</h2>
+      <div class="row">
+        <div
+          class="col-md-4 mb-4"
+          v-for="item in similarProducts"
+          :key="item.id"
+        >
+          <div class="product h-100" @click="getProduct(item.id)">
+            <div>
+              <div class="products-img-wrap">
+                <div
+                  class="products-img h-100"
+                  :style="`background-image: url(${item.imageUrl})`"
+                ></div>
+              </div>
+              <div class="d-flex flex-column justify-content-between p-4">
+                <div>
+                  <h2 class="fs-2">{{ item.title }}</h2>
+                  <p class="fs-4">
+                    $ {{ item.price }}
+                    <span class="fs-6 text-decoration-line-through text-muted">
+                      $ {{ item.origin_price }}</span>
+                  </p>
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary"
+                    :class="{ disabled: icon.isLoading === item.id }"
+                    @click.stop="addToCart(item.id)"
+                  >
+                    <span
+                      v-if="icon.isLoading === item.id"
+                      class="spinner-border spinner-border-sm me-3"
+                    ></span
+                    ><span v-else class="align-middle material-icons-outlined">
+                      add_shopping_cart </span
+                    >加入購物車
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
 
 export default {
   inject: ['emitter'],
@@ -154,6 +199,8 @@ export default {
     return {
       isLoading: false,
       product: {},
+      allProducts: [],
+      similarProducts: [],
       qty: 1,
       desStr: [],
       icon: {
@@ -164,16 +211,47 @@ export default {
   methods: {
     getProduct(id) {
       this.isLoading = true;
+      this.similarProducts = [];
       this.$http
         .get(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/product/${id}`)
         .then((res) => {
           if (res.data.success) {
             this.product = res.data.product;
+            this.getAllproducts();
             this.isLoading = false;
           } else {
             this.emitter.emit('push-message', res.data);
           }
         });
+    },
+    getAllproducts() {
+      this.$http
+        .get(`${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/products/all`)
+        .then((res) => {
+          if (res.data.success) {
+            this.allProducts = res.data.products;
+            this.getSimilarCategory();
+          } else {
+            this.emitter.emit('push-message', res.data);
+          }
+        });
+    },
+    getSimilarCategory() {
+      const { category } = this.product;
+      const filterCategory = this.allProducts.filter(
+        (item) => item.id !== this.product.id && item.category === category,
+      );
+      const arrSet = new Set([]);
+      const maxSize = filterCategory.length < 3 ? filterCategory.length : 3;
+      for (let i = 0; arrSet.size < maxSize; i + 1) {
+        const num = getRandomInt(filterCategory.length);
+        arrSet.add(num);
+        console.log(arrSet);
+      }
+      arrSet.forEach((i) => {
+        this.similarProducts.push(filterCategory[i]);
+      });
+      console.log(this.similarProducts);
     },
     addToCart(id) {
       const cart = { product_id: id, qty: this.qty };
@@ -206,3 +284,26 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.product {
+  cursor: pointer;
+  background-color: #eee;
+  transition: 0.3s;
+  &:hover {
+    box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.2);
+  }
+  &:hover .products-img {
+    transform: scale(1.2);
+  }
+  .products-img-wrap {
+    height: 220px;
+    overflow: hidden;
+    .products-img {
+      background-size: cover;
+      background-position: center;
+      transition: 0.3s;
+    }
+  }
+}
+</style>

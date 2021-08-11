@@ -213,6 +213,7 @@
 import Modal from 'bootstrap/js/dist/modal';
 
 export default {
+  inject: ['emitter'],
   data() {
     return {
       modal: '',
@@ -246,9 +247,11 @@ export default {
       const api = `${process.env.VUE_APP_URL}/api/${process.env.VUE_APP_PATH}/admin/upload`;
       this.$http.post(api, formData).then((res) => {
         if (res.data.success) {
+          this.emitter.emit('push-message', res.data);
           this.tempProduct.imageUrl = res.data.imageUrl;
           this.$refs.fileInput.value = '';
         } else {
+          this.emitter.emit('push-message', res.data);
           this.$refs.fileInput.value = '';
         }
       });

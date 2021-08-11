@@ -17,6 +17,63 @@
   </div>
   <section>
     <div class="container">
+      <div class="position-relative m-5">
+        <div class="progress" style="height: 1px">
+          <div
+            :style="`width: ${width}%`"
+            class="progress-bar"
+            role="progressbar"
+            aria-valuenow="50"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          ></div>
+        </div>
+        <div
+          class="
+            position-absolute
+            top-0
+            start-0
+            translate-middle
+            text-center
+            rounded-pill
+            px-3
+            py-2
+          "
+          :class="stepClass"
+        >
+          1
+        </div>
+        <div
+          class="
+            position-absolute
+            top-0
+            start-50
+            translate-middle
+            text-center
+            rounded-pill
+            px-3
+            py-2
+          "
+          :class="stepClass"
+        >
+          2
+        </div>
+        <div
+          class="
+            position-absolute
+            top-0
+            start-100
+            translate-middle
+            text-center
+            rounded-pill
+            px-3
+            py-2
+          "
+          :class="stepClass"
+        >
+          3
+        </div>
+      </div>
       <div class="text-dark d-flex justify-content-evenly" v-if="order.user">
         <div class="p-3">
           <h3
@@ -106,6 +163,8 @@ export default {
   inject: ['emitter'],
   data() {
     return {
+      stepClass: ['bg-primary', 'text-white'],
+      width: 100,
       order: {},
       icon: {
         isLoading: false,
