@@ -15,7 +15,7 @@
       您的購物車
     </h2>
   </div>
-  <section class="py-5 text-center" v-if="!carts.final_total">
+  <section class="py-5 text-center content-height" v-if="!carts.final_total">
     <h3>您的購物車是空的</h3>
     <div>
       <img
@@ -30,7 +30,7 @@
       >去購物</router-link
     >
   </section>
-  <section class="py-5 vh-100" v-else>
+  <section class="py-5 content-height" v-else>
     <div class="container">
       <div class="position-relative m-4">
         <div class="progress" style="height: 1px">

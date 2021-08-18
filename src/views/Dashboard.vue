@@ -1,5 +1,5 @@
 <template>
-  <Navbar></Navbar>
+  <Navbar/>
   <div class="container">
     <router-view v-if="checkUserLogin"></router-view>
   </div>
